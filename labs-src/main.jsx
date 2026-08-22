@@ -18,6 +18,11 @@ const implementedLabs = {
   "aws-outage-storyboard": lazy(() => import("./labs/AwsCustomerJourneyOutageStoryboard.jsx")),
   "azure-access-handoff": lazy(() => import("./labs/AzureAccessHandoffSimulator.jsx")),
   "gcp-promise-ledger": lazy(() => import("./labs/GcpTransformationPromiseLedger.jsx")),
+  "responsive-constraint-handoff": lazy(() => import("./labs/ResponsiveConstraintHandoff.jsx")),
+  "exception-first-python-automator": lazy(() => import("./labs/ExceptionFirstPythonAutomator.jsx")),
+  "queue-fairness-replay": lazy(() => import("./labs/QueueFairnessReplay.jsx")),
+  "safe-c-input-harness": lazy(() => import("./labs/SafeCInputHarness.jsx")),
+  "csv-claim-stress-tester": lazy(() => import("./labs/CsvClaimStressTester.jsx")),
   "network-change-rollback": lazy(() => import("./labs/NetworkChangeRollbackComposer.jsx"))
 };
 

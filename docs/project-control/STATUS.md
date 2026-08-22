@@ -4,7 +4,7 @@ Last updated: 2026-08-22
 
 ## Current phase
 
-Batch 0 through Batch 4 functional work is complete. Both flagships are functional, the Printing Press ERP is claimed and verified on Cloudflare, and Labs 01-14 plus Lab 26 have passed automated and browser acceptance under the usefulness and originality gates.
+Batch 0 through Batch 5 functional work is complete. Both flagships are functional, the Printing Press ERP is claimed and verified on Cloudflare, and Labs 01-19 plus Lab 26 have passed automated and browser acceptance under the usefulness and originality gates.
 
 ## Confirmed product decisions
 
@@ -78,14 +78,24 @@ Batch 0 through Batch 4 functional work is complete. Both flagships are function
 - Browser-tested every Batch 4 example plus Lab 26's blocked-overlap path with no console warnings or errors.
 - Verified the two densest Batch 4 tools at a 390px viewport with no page-level horizontal overflow.
 - Recorded a dated prior-art review, specific differentiators, and the explicit boundary against unsupported worldwide-novelty claims.
+- Replaced Batch 5's generic playground, visualizer, and CSV studio concepts with five original practical workflows before implementation.
+- Added Lab 15 Responsive Constraint Handoff with per-viewport feasibility, reflow/visibility decisions, keyboard order, CSS starter, and QA checklist.
+- Added Lab 16 Exception-First Python Automator with bounded path validation and dry-run, failure, duplicate, audit, backup, and undo-aware source generation.
+- Added Lab 17 Queue Fairness Replay with FIFO versus priority-aging waits, starvation and fairness evidence, and a copyable C contract.
+- Added Lab 18 Safe C Input Harness with bounded `fgets`/`strtol`/`strtod` source generation, boundary vectors, stack estimate, and reviewer checklist.
+- Added Lab 19 CSV Claim Stress Tester with local quality gates, outlier and time-slice sensitivity, Support/Fragile/Reject evidence, and a pandas recipe.
+- Expanded the automated suite to 104 passing tests and passed the combined portfolio, Applied Labs, and Timber production build.
+- Browser-tested every Batch 5 realistic example, unsafe Python traversal rejection, and contradicted CSV claim rejection with no console warnings or errors.
+- Found and repaired mobile intrinsic-width overflow in the queue results; verified table-heavy Labs 17-19 at 390 x 844.
+- Recorded Batch 5's dated prior-art boundaries and concrete differentiators without unsupported worldwide-novelty claims.
 
 ## In progress
 
-- Batch 5 planning: Labs 15-19 under the same real-user, reusable-output, originality, safety, test, build, and browser gates.
+- Batch 6 originality and usefulness redesign for Labs 20-24.
 
 ## Next checkpoint
 
-Define and implement original, useful workflows for Labs 15-19, then run the full acceptance gate before creating the next checkpoint.
+Replace Batch 6's generic planned concepts with useful, differentiated workflows before implementation, then apply the complete acceptance gate.
 
 ## Known risks
 
