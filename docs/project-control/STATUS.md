@@ -4,7 +4,7 @@ Last updated: 2026-08-22
 
 ## Current phase
 
-Batch 0, Batch 1, and Batch 2 functional work are complete. Both flagships are functional, the Printing Press ERP is claimed and verified on Cloudflare, and Labs 01-05 have passed automated and browser acceptance. Batch 3 is next.
+Batch 0 through Batch 3 functional work is complete. Both flagships are functional, the Printing Press ERP is claimed and verified on Cloudflare, and Labs 01-10 have passed automated and browser acceptance. Batch 4 is next.
 
 ## Confirmed product decisions
 
@@ -59,15 +59,24 @@ Batch 0, Batch 1, and Batch 2 functional work are complete. Both flagships are f
 - Added lazy-loaded routes for Labs 01-05 and marked them functional in the canonical manifest.
 - Passed all 30 current domain tests and the combined portfolio, Applied Labs, and Timber production build.
 - Browser-tested every Batch 2 lab workflow, including a 390 × 844 mobile check, with no console warnings or errors.
+- Added Lab 06 Neural Network Playground with transparent one-neuron arithmetic, three activations, contribution breakdown, and binary sample predictions.
+- Added Lab 07 GenAI Lifecycle Explorer with six delivery stages, deterministic readiness scoring, blockers, and required artifacts.
+- Added Lab 08 AI Opportunity Scorer with a transparent 100-point weighted formula, recommendation bands, and risk-specific guardrails.
+- Added Lab 09 Prompt Workbench with structured prompt assembly, six local quality checks, scoring, suggestions, and copy support.
+- Added Lab 10 ML Model Lab with bounded CSV parsing, feature standardization, KNN classification, deterministic tie-breaking, nearest-neighbour evidence, and leave-one-out evaluation.
+- Added lazy-loaded routes for Labs 06-10 and marked them functional in the canonical manifest.
+- Expanded the automated suite to 53 passing tests and passed the combined portfolio, Applied Labs, and Timber production build.
+- Browser-tested every Batch 3 lab workflow and the Prompt Workbench clipboard state with no console warnings or errors.
+- Found and fixed page-level mobile overflow from ML result tables; re-verified at 390 × 844.
 
 ## Next batch
 
-- Batch 3: Labs 06-10.
-- Continue the functional-first pattern for neural networks, GenAI lifecycle, AI opportunity scoring, prompt engineering, and machine-learning model exploration.
+- Batch 4: Labs 11-14 and 26.
+- Implement cloud TCO planning, AWS/Azure/GCP service navigation, and networking/subnet calculations.
 
 ## Next checkpoint
 
-Implement and accept Labs 06-10 without mixing in final portfolio visual redesign work.
+Implement and accept Labs 11-14 and 26 without mixing in final portfolio visual redesign work.
 
 ## Known risks
 

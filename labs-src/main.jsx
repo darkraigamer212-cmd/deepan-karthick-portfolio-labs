@@ -8,7 +8,12 @@ const implementedLabs = {
   "mini-rag-studio": lazy(() => import("./labs/MiniRagStudio.jsx")),
   "gan-latent-gallery": lazy(() => import("./labs/GanLatentGallery.jsx")),
   "cnn-feature-explorer": lazy(() => import("./labs/CnnFeatureExplorer.jsx")),
-  "attention-text-explorer": lazy(() => import("./labs/AttentionTextExplorer.jsx"))
+  "attention-text-explorer": lazy(() => import("./labs/AttentionTextExplorer.jsx")),
+  "neural-network-playground": lazy(() => import("./labs/NeuralNetworkPlayground.jsx")),
+  "genai-lifecycle-explorer": lazy(() => import("./labs/GenAiLifecycleExplorer.jsx")),
+  "ai-opportunity-scorer": lazy(() => import("./labs/AiOpportunityScorer.jsx")),
+  "prompt-workbench": lazy(() => import("./labs/PromptWorkbench.jsx")),
+  "ml-model-lab": lazy(() => import("./labs/MlModelLab.jsx"))
 };
 
 const categoryLabels = {
