@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
+import { motion, useReducedMotion } from "framer-motion";
+import { animated, useSpring } from "@react-spring/web";
+import gsap from "gsap";
 import "./styles.css";
 
 document.title = document.body.dataset.page === "links"
@@ -70,9 +73,52 @@ function App() {
   const isLinksPage = document.body.dataset.page === "links";
   return (
     <div className="site-shell">
+      {!isLinksPage ? <BackgroundFX /> : null}
       <Header linksPage={isLinksPage} />
       {isLinksPage ? <LinksPage /> : <HomePage />}
       <Footer />
+    </div>
+  );
+}
+
+function BackgroundFX() {
+  const fieldRef = useRef(null);
+  const reduceMotion = useReducedMotion();
+  const spring = useSpring({
+    from: { transform: "translate3d(-8%, 5%, 0) scale(0.9)", opacity: 0.25 },
+    to: { transform: "translate3d(6%, -4%, 0) scale(1.08)", opacity: 0.72 },
+    loop: { reverse: true },
+    config: { mass: 5, tension: 28, friction: 18 },
+    immediate: reduceMotion
+  });
+
+  useEffect(() => {
+    if (reduceMotion || !fieldRef.current) return undefined;
+    const context = gsap.context(() => {
+      gsap.to(".aurora-orb", {
+        x: (_, element) => Number(element.dataset.x),
+        y: (_, element) => Number(element.dataset.y),
+        rotation: 14,
+        duration: 10,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 1.4
+      });
+    }, fieldRef);
+    return () => context.revert();
+  }, [reduceMotion]);
+
+  return (
+    <div className="cosmic-field" ref={fieldRef} aria-hidden="true">
+      <div className="aceternity-spotlight" />
+      <div className="aurora-orb orb-cyan" data-x="80" data-y="-45" />
+      <div className="aurora-orb orb-violet" data-x="-70" data-y="60" />
+      <div className="aurora-orb orb-rose" data-x="45" data-y="55" />
+      <animated.div className="spring-nebula" style={spring} />
+      <div className="magic-beam beam-one" />
+      <div className="magic-beam beam-two" />
+      {Array.from({ length: 12 }, (_, index) => <i key={index} className={`meteor meteor-${index + 1}`} />)}
     </div>
   );
 }
@@ -105,9 +151,10 @@ function HomePage() {
 }
 
 function Hero() {
+  const reduceMotion = useReducedMotion();
   return (
-    <section className="hero page-frame" aria-labelledby="hero-title">
-      <div className="hero-copy">
+    <motion.section className="hero page-frame" aria-labelledby="hero-title" initial={reduceMotion ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
+      <motion.div className="hero-copy" whileHover={reduceMotion ? undefined : { y: -4 }} transition={{ type: "spring", stiffness: 180, damping: 22 }}>
         <p className="hero-role">Software engineer / systems builder</p>
         <h1 id="hero-title">I build practical software for real business decisions.</h1>
         <p className="hero-lead">B.Sc. Computer Science with AI student building tested React tools, operational workflows, and local-first software for internships and startup projects.</p>
@@ -116,7 +163,7 @@ function Hero() {
           <a className="glass-action glass-action-primary" href="#work">Review flagship work <Arrow /></a>
           <a className="glass-action" href={links.labs}>Explore 30 Applied Labs <Arrow /></a>
         </div>
-      </div>
+      </motion.div>
       <div className="hero-flagships" aria-label="Flagship software systems">
         <FlagshipPreview
           eyebrow="Production · orders · stock"
@@ -137,13 +184,13 @@ function Hero() {
           tone="magenta"
         />
       </div>
-    </section>
+    </motion.section>
   );
 }
 
 function FlagshipPreview({ eyebrow, title, summary, screenshot, alt, href, tone }) {
   return (
-    <a className={`flagship-preview flagship-preview-${tone}`} href={href}>
+    <motion.a className={`flagship-preview flagship-preview-${tone}`} href={href} whileHover={{ y: -6, scale: 1.006 }} transition={{ type: "spring", stiffness: 230, damping: 20 }}>
       <div className="preview-copy">
         <span className="preview-index" aria-hidden="true">{tone === "cyan" ? "01" : "02"}</span>
         <p>{eyebrow}</p>
@@ -152,7 +199,7 @@ function FlagshipPreview({ eyebrow, title, summary, screenshot, alt, href, tone 
         <span className="preview-link">Open live system <Arrow /></span>
       </div>
       <figure><img src={screenshot} alt={alt} /></figure>
-    </a>
+    </motion.a>
   );
 }
 
