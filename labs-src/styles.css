@@ -1,0 +1,86 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #172033;
+  background: #f5f7fb;
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+
+body { margin: 0; }
+
+a { color: #174ea6; }
+
+button, input, select { font: inherit; }
+
+.app-shell { min-height: 100vh; }
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem max(1rem, calc((100vw - 1120px) / 2));
+  color: #fff;
+  background: #172033;
+}
+
+.brand { color: inherit; font-weight: 750; text-decoration: none; }
+.site-header nav { display: flex; gap: 1rem; }
+.site-header nav a { color: #fff; }
+
+main { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; padding: 3rem 0 5rem; }
+
+.intro { max-width: 760px; }
+.intro h1, .lab-detail h1 { margin: 0 0 1rem; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.05; }
+.intro p { color: #536078; font-size: 1.1rem; line-height: 1.7; }
+
+.controls {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(190px, 0.45fr) auto;
+  align-items: end;
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 1rem;
+  border: 1px solid #d8dfeb;
+  background: #fff;
+}
+
+.controls label { display: grid; gap: 0.45rem; font-weight: 650; }
+.controls input, .controls select { min-height: 44px; padding: 0.65rem 0.75rem; border: 1px solid #9aa8bd; background: #fff; }
+.controls output { padding-bottom: 0.7rem; color: #536078; white-space: nowrap; }
+
+.lab-list { display: grid; gap: 0.65rem; }
+.lab-row {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr) minmax(150px, 0.35fr) 6rem;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #d8dfeb;
+  background: #fff;
+}
+.lab-row h2 { margin: 0 0 0.35rem; font-size: 1.05rem; }
+.lab-row p { margin: 0; color: #637089; }
+.lab-number { font-variant-numeric: tabular-nums; font-weight: 800; color: #52627c; }
+.lab-category, .lab-status { color: #52627c; font-size: 0.9rem; }
+.lab-status { text-align: right; text-transform: capitalize; }
+
+.lab-detail { max-width: 860px; }
+.lab-id { margin-top: 3rem; color: #52627c; font-weight: 750; }
+.lab-detail dl { display: grid; gap: 0.5rem; margin: 2rem 0; }
+.lab-detail dl div { display: grid; grid-template-columns: 10rem 1fr; gap: 1rem; }
+.lab-detail dt { font-weight: 750; }
+.lab-detail dd { margin: 0; }
+.implementation-notice { margin-top: 2rem; padding: 1.5rem; border: 1px solid #d8dfeb; background: #fff; }
+.implementation-notice h2 { margin-top: 0; }
+.empty-state { padding: 2rem; text-align: center; border: 1px dashed #9aa8bd; }
+
+@media (max-width: 760px) {
+  .site-header { align-items: flex-start; flex-direction: column; }
+  .controls { grid-template-columns: 1fr; }
+  .controls output { padding: 0; }
+  .lab-row { grid-template-columns: 2.5rem 1fr; align-items: start; }
+  .lab-category, .lab-status { grid-column: 2; text-align: left; }
+  .lab-detail dl div { grid-template-columns: 1fr; gap: 0.2rem; }
+}

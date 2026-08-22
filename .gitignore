@@ -8,3 +8,9 @@ tmp/
 node_modules/
 portfolio-src/node_modules/
 .pnpm-store/
+imports/
+
+# Local runtime and client data must never be committed.
+*.db
+*.db-wal
+*.db-shm

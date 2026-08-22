@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "credentialCount": 30,
+  "buildMode": "functional-first",
+  "flagships": [
+    {
+      "id": "printing-press-erp",
+      "name": "Printing Press ERP",
+      "status": "audit-pending"
+    },
+    {
+      "id": "timber-cft-pro",
+      "name": "Timber CFT Pro with Billing",
+      "status": "audit-in-progress"
+    }
+  ],
+  "labs": [
+    {"id":1,"slug":"ai-workflow-canvas","credential":"Generative AI for Everyone","project":"AI Workflow Canvas","category":"ai-ml","batch":2,"status":"planned"},
+    {"id":2,"slug":"mini-rag-studio","credential":"Generative AI with Large Language Models","project":"Mini RAG Studio","category":"ai-ml","batch":2,"status":"planned"},
+    {"id":3,"slug":"gan-latent-gallery","credential":"Build Basic Generative Adversarial Networks (GANs)","project":"GAN Latent Gallery","category":"ai-ml","batch":2,"status":"planned"},
+    {"id":4,"slug":"cnn-feature-explorer","credential":"Convolutional Neural Networks","project":"CNN Feature Explorer","category":"ai-ml","batch":2,"status":"planned"},
+    {"id":5,"slug":"attention-text-explorer","credential":"Natural Language Processing with Attention Models","project":"Attention Text Explorer","category":"ai-ml","batch":2,"status":"planned"},
+    {"id":6,"slug":"neural-network-playground","credential":"Neural Networks and Deep Learning","project":"Neural Network Playground","category":"ai-ml","batch":3,"status":"planned"},
+    {"id":7,"slug":"genai-lifecycle-explorer","credential":"Introduction to Generative AI","project":"GenAI Lifecycle Explorer","category":"ai-ml","batch":3,"status":"planned"},
+    {"id":8,"slug":"ai-opportunity-scorer","credential":"AI for Everyone","project":"AI Opportunity Scorer","category":"ai-ml","batch":3,"status":"planned"},
+    {"id":9,"slug":"prompt-workbench","credential":"Prompt Engineering for ChatGPT","project":"Prompt Workbench","category":"ai-ml","batch":3,"status":"planned"},
+    {"id":10,"slug":"ml-model-lab","credential":"Machine Learning Specialization","project":"ML Model Lab","category":"ai-ml","batch":3,"status":"planned"},
+    {"id":11,"slug":"cloud-tco-planner","credential":"Introduction to Cloud Computing","project":"Cloud TCO Planner","category":"cloud","batch":4,"status":"planned"},
+    {"id":12,"slug":"aws-service-architect","credential":"AWS Cloud Practitioner Essentials","project":"AWS Service Architect","category":"cloud","batch":4,"status":"planned"},
+    {"id":13,"slug":"azure-service-navigator","credential":"Microsoft Azure Fundamentals (AZ-900) Cert Prep","project":"Azure Service Navigator","category":"cloud","batch":4,"status":"planned"},
+    {"id":14,"slug":"gcp-transformation-planner","credential":"Prepare for the Google Cloud Digital Leader Certification","project":"GCP Transformation Planner","category":"cloud","batch":4,"status":"planned"},
+    {"id":15,"slug":"responsive-ui-lab","credential":"Introduction to Front-End Development","project":"Responsive UI Lab","category":"software-data","batch":5,"status":"planned"},
+    {"id":16,"slug":"python-playground","credential":"Hello, Python!","project":"Python Playground","category":"software-data","batch":5,"status":"planned"},
+    {"id":17,"slug":"c-data-structure-visualizer","credential":"Data Structures in C","project":"C Data Structure Visualizer","category":"software-data","batch":5,"status":"planned"},
+    {"id":18,"slug":"c-memory-lab","credential":"Programming with C","project":"C Memory Lab","category":"software-data","batch":5,"status":"planned"},
+    {"id":19,"slug":"csv-insight-studio","credential":"Data Analysis with Python","project":"CSV Insight Studio","category":"software-data","batch":5,"status":"planned"},
+    {"id":20,"slug":"llm-data-pipeline-lab","credential":"Generative AI and LLMs: Architecture and Data Preparation","project":"LLM Data Pipeline Lab","category":"software-data","batch":6,"status":"planned"},
+    {"id":21,"slug":"market-equilibrium-simulator","credential":"Microeconomics Principles","project":"Market Equilibrium Simulator","category":"business-finance","batch":6,"status":"planned"},
+    {"id":22,"slug":"amm-calculator","credential":"Decentralized Finance (DeFi): The Future of Finance","project":"AMM and Impermanent Loss Calculator","category":"business-finance","batch":6,"status":"planned"},
+    {"id":23,"slug":"security-hygiene-scanner","credential":"Introduction to Cybersecurity Essentials","project":"Security Hygiene Scanner","category":"cybersecurity","batch":6,"status":"planned"},
+    {"id":24,"slug":"owasp-secure-review-lab","credential":"OWASP Top 10 - 2021","project":"OWASP Secure Review Lab","category":"cybersecurity","batch":6,"status":"planned"},
+    {"id":25,"slug":"privacy-shield","credential":"IT Security: Defense against the digital dark arts","project":"Privacy Shield","category":"cybersecurity","batch":7,"status":"planned"},
+    {"id":26,"slug":"network-subnet-lab","credential":"The Bits and Bytes of Computer Networking","project":"Network and Subnet Lab","category":"cloud","batch":4,"status":"planned"},
+    {"id":27,"slug":"cyber-career-readiness","credential":"Put It to Work: Prepare for Cybersecurity Jobs","project":"Cyber Career Readiness Tracker","category":"cybersecurity","batch":7,"status":"planned"},
+    {"id":28,"slug":"soc-alert-triage","credential":"Introduction to Cybersecurity Tools & Cyberattacks","project":"SOC Alert Triage Simulator","category":"cybersecurity","batch":7,"status":"planned"},
+    {"id":29,"slug":"python-log-anomaly-scanner","credential":"Automate Cybersecurity Tasks with Python","project":"Python Log Anomaly Scanner","category":"cybersecurity","batch":7,"status":"planned"},
+    {"id":30,"slug":"security-risk-register","credential":"Play It Safe: Manage Security Risks","project":"Security Risk Register","category":"cybersecurity","batch":7,"status":"planned"}
+  ]
+}
