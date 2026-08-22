@@ -23,6 +23,11 @@ const implementedLabs = {
   "queue-fairness-replay": lazy(() => import("./labs/QueueFairnessReplay.jsx")),
   "safe-c-input-harness": lazy(() => import("./labs/SafeCInputHarness.jsx")),
   "csv-claim-stress-tester": lazy(() => import("./labs/CsvClaimStressTester.jsx")),
+  "llm-data-contract-firewall": lazy(() => import("./labs/LlmDataContractFirewall.jsx")),
+  "shortage-response-tradeoff": lazy(() => import("./labs/ShortageResponseTradeoffLab.jsx")),
+  "lp-exit-rehearsal": lazy(() => import("./labs/LpExitRehearsal.jsx")),
+  "account-recovery-drill": lazy(() => import("./labs/AccountRecoveryDrillComposer.jsx")),
+  "feature-misuse-contract": lazy(() => import("./labs/FeatureMisuseContract.jsx")),
   "network-change-rollback": lazy(() => import("./labs/NetworkChangeRollbackComposer.jsx"))
 };
 

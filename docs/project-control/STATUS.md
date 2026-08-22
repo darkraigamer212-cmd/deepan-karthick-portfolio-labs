@@ -4,7 +4,7 @@ Last updated: 2026-08-22
 
 ## Current phase
 
-Batch 0 through Batch 5 functional work is complete. Both flagships are functional, the Printing Press ERP is claimed and verified on Cloudflare, and Labs 01-19 plus Lab 26 have passed automated and browser acceptance under the usefulness and originality gates.
+Batch 0 through Batch 6 functional work is complete. Both flagships are functional, the Printing Press ERP is claimed and verified on Cloudflare, and Labs 01-24 plus Lab 26 have passed automated and browser acceptance under the usefulness and originality gates.
 
 ## Confirmed product decisions
 
@@ -88,14 +88,23 @@ Batch 0 through Batch 5 functional work is complete. Both flagships are function
 - Browser-tested every Batch 5 realistic example, unsafe Python traversal rejection, and contradicted CSV claim rejection with no console warnings or errors.
 - Found and repaired mobile intrinsic-width overflow in the queue results; verified table-heavy Labs 17-19 at 390 x 844.
 - Recorded Batch 5's dated prior-art boundaries and concrete differentiators without unsupported worldwide-novelty claims.
+- Replaced Batch 6's generic finance and security ideas with five original workflow combinations before implementation.
+- Added Lab 20 LLM Data Contract Firewall with fail-closed allow/redact/quarantine/exclude decisions, least-data stages, leakage gates, strict schema output, and a dataset-card contract without processing records.
+- Added Lab 21 Shortage Response Trade-off Lab with candidate-price versus purchase-cap allocation evidence, distribution proxies, assumptions, owner memo, and mandatory local legal/anti-gouging review.
+- Added Lab 22 LP Exit Rehearsal with synthetic constant-product rebalancing, withdrawal and hold comparison, impermanent loss, fee break-even, separate curve-impact and fee-inclusive execution-gap measures, stop triggers, and governance memo.
+- Added Lab 23 Account Recovery Drill Composer with label-only inputs, correlated device/phone/email recovery checks, notification gaps, secret-free tabletop steps, emergency cards, and owned actions.
+- Added Lab 24 Feature Misuse Contract with customer-promise-linked defensive misuse stories, OWASP mappings, observable negative acceptance tests, owners, evidence, and a copyable PR merge contract.
+- Expanded the automated suite to 126 passing tests and passed the portfolio, Applied Labs, and Timber production builds.
+- Browser-tested every Batch 6 realistic example and the recovery drill's unsafe username-style input rejection with no warnings or errors.
+- Verified the table-heavy finance/security tools at 390 x 844 and recorded Batch 6's prior-art and safety boundaries without unsupported worldwide-novelty claims.
 
 ## In progress
 
-- Batch 6 originality and usefulness redesign for Labs 20-24.
+- Batch 7 invention and implementation planning for Labs 25 and 27-30. Existing placeholder names must be replaced before coding because they are generic adjacent-tool clones.
 
 ## Next checkpoint
 
-Replace Batch 6's generic planned concepts with useful, differentiated workflows before implementation, then apply the complete acceptance gate.
+Define the final five certificate workflows only after named-user, prior-art, original-combination, defensive-safety, and reusable-artifact gates pass; then implement and accept them as one final functional batch.
 
 ## Known risks
 

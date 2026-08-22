@@ -290,6 +290,47 @@ main { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; padding: 3rem 0 5r
 .lab19-table-wrap th, .lab19-table-wrap td { padding: 0.65rem; border: 1px solid #d8dfeb; text-align: left; white-space: nowrap; }
 .lab19-results textarea { width: 100%; margin: 0.45rem 0; padding: 0.75rem; border: 1px solid #9aa8bd; background: #fff; resize: vertical; }
 
+.lp-exit-rehearsal .lab-output > dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
+.lp-exit-rehearsal .lab-output > dl div { min-width: 0; padding: 0.65rem; background: #f7f9fc; }
+.lp-exit-rehearsal .lab-output > dl dd { margin: 0.25rem 0 0; overflow-wrap: anywhere; font-weight: 750; }
+.recovery-finding, .emergency-card { margin: 0.75rem 0; padding: 1rem; border: 1px solid #d8dfeb; background: #fff; }
+.recovery-finding h5, .emergency-card h5 { margin-top: 0; }
+.recovery-finding[data-severity="critical"] { border-left: 4px solid #b42318; }
+.recovery-finding[data-severity="high"] { border-left: 4px solid #b36b00; }
+
+.lab24-misuse-contract { margin-top: 2rem; padding: clamp(1rem, 3vw, 2rem); border: 1px solid #cbd5e4; background: #fff; }
+.lab24-heading { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(240px, 0.7fr); gap: 1rem; align-items: start; }
+.lab24-heading h2 { margin-top: 0; }
+.lab24-heading p, .lab24-misuse-contract p { line-height: 1.6; }
+.lab24-limit { margin: 0; padding: 0.85rem 1rem; border-left: 4px solid #174ea6; background: #eef4fd; }
+.lab24-controls { display: grid; gap: 0.85rem; margin-top: 1.5rem; }
+.lab24-controls > label, .lab24-boundary-row label { display: grid; gap: 0.4rem; min-width: 0; font-weight: 700; }
+.lab24-controls input:not([type="checkbox"]), .lab24-controls textarea { width: 100%; min-height: 42px; padding: 0.65rem 0.75rem; border: 1px solid #9aa8bd; background: #fff; }
+.lab24-controls textarea { resize: vertical; }
+.lab24-controls small { color: #536078; font-weight: 400; }
+.lab24-controls [role="alert"], .lab24-errors { color: #8a1c13; }
+.lab24-controls fieldset { min-width: 0; padding: 1rem; border: 1px solid #d8dfeb; }
+.lab24-controls legend { padding: 0 0.35rem; font-weight: 800; }
+.lab24-controls fieldset > label { margin: 0.45rem 0; }
+.lab24-boundary-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; margin: 1rem 0; }
+.lab24-boundary-row button { align-self: end; }
+.lab24-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+.lab24-actions button, .lab24-controls fieldset > button, .lab24-results button { min-height: 42px; padding: 0.6rem 0.9rem; border: 1px solid #174ea6; color: #174ea6; background: #fff; font-weight: 700; }
+.lab24-actions button:first-child, .lab24-results button { color: #fff; background: #174ea6; }
+.lab24-errors { margin-top: 1rem; padding: 1rem; border-left: 4px solid #b42318; background: #fff0ef; }
+.lab24-results { display: grid; min-width: 0; gap: 1rem; margin-top: 1.5rem; }
+.lab24-results > section { min-width: 0; padding: 1rem; border: 1px solid #d8dfeb; }
+.lab24-results h3 { margin-top: 0; }
+.lab24-story-list { display: grid; gap: 0.75rem; padding-left: 1.5rem; }
+.lab24-story-list article { padding: 1rem; border-left: 4px solid #174ea6; background: #f7f9fc; }
+.lab24-story-list header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; }
+.lab24-story-list h4 { margin: 0; }
+.lab24-story-list dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
+.lab24-story-list dl div { padding: 0.65rem; background: #fff; }
+.lab24-story-list dd { margin: 0.25rem 0 0; }
+.lab24-results textarea { width: 100%; margin: 0.45rem 0; padding: 0.75rem; border: 1px solid #9aa8bd; background: #fff; resize: vertical; }
+.lab24-references { margin-top: 1.5rem; padding: 1rem; border-left: 4px solid #52627c; background: #f7f9fc; }
+
 @media (max-width: 760px) {
   .site-header { align-items: flex-start; flex-direction: column; }
   .controls { grid-template-columns: 1fr; }
@@ -306,5 +347,5 @@ main { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; padding: 3rem 0 5r
   .lab14-heading, .lab14-controls, .lab14-metric-fields, .lab14-triggers, .lab19-heading, .lab19-controls { grid-template-columns: 1fr; }
   .lab14-controls > label:first-child, .lab14-metric-fields, .lab14-actions { grid-column: auto; }
   .lab19-controls > label:first-child, .lab19-controls > label:nth-last-of-type(1), .lab19-actions { grid-column: auto; }
-  .lab19-results dl, .queue-strategy dl, .safe-c-input-harness .lab-output > dl { grid-template-columns: 1fr; }
+  .lab19-results dl, .queue-strategy dl, .safe-c-input-harness .lab-output > dl, .lp-exit-rehearsal .lab-output > dl, .lab24-heading, .lab24-boundary-row, .lab24-story-list dl { grid-template-columns: 1fr; }
 }
