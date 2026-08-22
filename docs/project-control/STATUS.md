@@ -100,11 +100,11 @@ Batch 0 through Batch 6 functional work is complete. Both flagships are function
 
 ## In progress
 
-- Paused at the user's request after Batch 7 planning. Share-Link Afterlife Rehearsal, Proof-to-Interview Compiler, Containment Side-Effect Ledger, Detection Contract Drift Guard, and Assurance Change Shockwave Mapper have replaced the generic placeholders; their differentiators and safety boundaries are locked, but implementation has not started.
+- Batch 7 central acceptance: Labs 25 and 27-30 are implemented, documented, lazy-route integrated, and marked functional after 151 automated tests passed. Production-build and browser/mobile/console acceptance remain to be run outside the restricted local sandbox before the Batch 7 checkpoint is closed.
 
 ## Next checkpoint
 
-Define the final five certificate workflows only after named-user, prior-art, original-combination, defensive-safety, and reusable-artifact gates pass; then implement and accept them as one final functional batch.
+Run the Batch 7 production build and realistic desktop/mobile browser workflows, close the report, then begin Batch 8 visual redesign for the portfolio and Applied Labs.
 
 ## Known risks
 

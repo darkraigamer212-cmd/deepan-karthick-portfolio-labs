@@ -9,6 +9,7 @@ node_modules/
 portfolio-src/node_modules/
 .pnpm-store/
 imports/
+site-dist/
 
 # Local runtime and client data must never be committed.
 *.db

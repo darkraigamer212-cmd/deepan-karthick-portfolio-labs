@@ -28,16 +28,23 @@ const implementedLabs = {
   "lp-exit-rehearsal": lazy(() => import("./labs/LpExitRehearsal.jsx")),
   "account-recovery-drill": lazy(() => import("./labs/AccountRecoveryDrillComposer.jsx")),
   "feature-misuse-contract": lazy(() => import("./labs/FeatureMisuseContract.jsx")),
-  "network-change-rollback": lazy(() => import("./labs/NetworkChangeRollbackComposer.jsx"))
+  "share-link-afterlife": lazy(() => import("./labs/ShareLinkAfterlifeRehearsal.jsx")),
+  "network-change-rollback": lazy(() => import("./labs/NetworkChangeRollbackComposer.jsx")),
+  "proof-to-interview-compiler": lazy(() => import("./labs/ProofToInterviewCompiler.jsx")),
+  "containment-side-effect-ledger": lazy(() => import("./labs/ContainmentSideEffectLedger.jsx")),
+  "detection-contract-drift-guard": lazy(() => import("./labs/DetectionContractDriftGuard.jsx")),
+  "assurance-change-shockwave": lazy(() => import("./labs/AssuranceChangeShockwaveMapper.jsx"))
 };
 
 const categoryLabels = {
-  "ai-ml": "AI & machine learning",
-  cloud: "Cloud & networking",
-  "software-data": "Programming & data",
-  "business-finance": "Business & finance",
+  "ai-ml": "AI & ML",
+  cloud: "Cloud & Networking",
+  "software-data": "Programming & Data",
+  "business-finance": "Business & Finance",
   cybersecurity: "Cybersecurity"
 };
+
+const categoryOrder = ["ai-ml", "cloud", "software-data", "business-finance", "cybersecurity"];
 
 function getRoute() {
   const match = window.location.hash.match(/^#\/lab\/([^/?#]+)/);
@@ -64,6 +71,7 @@ function App() {
         <nav aria-label="Primary navigation">
           <a href="#/">All labs</a>
           <a href="../portfolio/index.html">Portfolio</a>
+          <a href="../docs/generated/karthik_ats_resume.pdf">Resume</a>
         </nav>
       </header>
       {route.type === "lab" ? <LabRoute lab={lab} /> : <Catalog />}
@@ -84,50 +92,116 @@ function Catalog() {
     });
   }, [category, query]);
 
+  const categoryGroups = useMemo(() => categoryOrder.map((categoryKey) => ({
+    key: categoryKey,
+    label: categoryLabels[categoryKey],
+    total: manifest.labs.filter((lab) => lab.category === categoryKey).length,
+    labs: visibleLabs.filter((lab) => lab.category === categoryKey)
+  })).filter((group) => group.labs.length), [visibleLabs]);
+
+  const functionalCount = manifest.labs.filter((lab) => lab.status === "functional").length;
+  const functionalPercent = Math.round((functionalCount / manifest.labs.length) * 100);
+
+  const clearFilters = () => {
+    setQuery("");
+    setCategory("all");
+  };
+
   return (
-    <main>
-      <section className="intro">
-        <h1>30 certificates. 30 working prototypes.</h1>
-        <p>This functional catalog is the shared home for every certificate project. Visual polish comes after the models pass their tests.</p>
+    <main className="catalog-page">
+      <section className="intro" aria-labelledby="catalog-title">
+        <div className="intro-copy">
+          <p className="eyebrow">Applied learning / working software</p>
+          <h1 id="catalog-title">30 certificates.<br />30 working prototypes.</h1>
+          <p className="intro-summary">Each Applied Lab turns a completed certificate into a practical, testable project. Explore the real tools, review their methods, and open any prototype directly.</p>
+
+          <dl className="catalog-stats" aria-label="Catalog totals">
+            <div><dt>{manifest.labs.length}</dt><dd>Applied labs</dd></div>
+            <div><dt>{categoryOrder.length}</dt><dd>Skill areas</dd></div>
+            <div><dt>{manifest.credentialCount}</dt><dd>Certificates</dd></div>
+            <div><dt>{functionalPercent}%</dt><dd>Functional</dd></div>
+          </dl>
+        </div>
+
+        <aside className="catalog-principles" aria-label="Project principles">
+          <p className="principles-title">Project principles</p>
+          <dl>
+            <div><dt>Local-first</dt><dd>Browser-based prototypes</dd></div>
+            <div><dt>Tested</dt><dd>Deterministic verification</dd></div>
+            <div><dt>Documented</dt><dd>Methods and limits included</dd></div>
+          </dl>
+        </aside>
       </section>
 
       <section className="controls" aria-label="Filter labs">
-        <label>
-          Search
+        <div className="catalog-search">
+          <label className="visually-hidden" htmlFor="lab-search">Search applied labs</label>
           <input
+            id="lab-search"
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search project or certificate"
           />
-        </label>
-        <label>
-          Category
-          <select value={category} onChange={(event) => setCategory(event.target.value)}>
-            <option value="all">All categories</option>
-            {Object.entries(categoryLabels).map(([value, label]) => (
-              <option key={value} value={value}>{label}</option>
-            ))}
-          </select>
-        </label>
-        <output>{visibleLabs.length} of {manifest.credentialCount} labs</output>
+        </div>
+
+        <div className="category-filters" role="group" aria-label="Filter by skill area">
+          <button type="button" aria-pressed={category === "all"} onClick={() => setCategory("all")}>All</button>
+          {categoryOrder.map((value) => (
+            <button
+              key={value}
+              type="button"
+              aria-pressed={category === value}
+              onClick={() => setCategory(value)}
+            >
+              {categoryLabels[value]}
+            </button>
+          ))}
+        </div>
+
+        <output aria-live="polite">Showing {visibleLabs.length} of {manifest.labs.length}</output>
       </section>
 
-      <section className="lab-list" aria-label="Applied labs">
-        {visibleLabs.map((lab) => (
-          <article className="lab-row" key={lab.id}>
-            <span className="lab-number">{String(lab.id).padStart(2, "0")}</span>
-            <div>
-              <h2><a href={`#/lab/${lab.slug}`}>{lab.project}</a></h2>
-              <p>{lab.credential}</p>
+      <section className="catalog-lanes" aria-label="Applied labs by skill area">
+        {categoryGroups.map((group) => (
+          <section className="category-lane" data-category={group.key} key={group.key} aria-labelledby={`category-${group.key}`}>
+            <header className="category-rail">
+              <span className="category-index" aria-hidden="true">{String(categoryOrder.indexOf(group.key) + 1).padStart(2, "0")}</span>
+              <div>
+                <h2 id={`category-${group.key}`}>{group.label}</h2>
+                <p>{group.total} {group.total === 1 ? "project" : "projects"} in this area</p>
+              </div>
+            </header>
+
+            <div className="category-projects">
+              {group.labs.map((lab) => (
+                <article className="lab-row" key={lab.id}>
+                  <span className="lab-number">{String(lab.id).padStart(2, "0")}</span>
+                  <div className="lab-summary">
+                    <h3><a href={`#/lab/${lab.slug}`}>{lab.project}</a></h3>
+                    <p>{lab.credential}</p>
+                  </div>
+                  <span className="lab-status">{lab.status}</span>
+                  <a className="open-lab" href={`#/lab/${lab.slug}`} aria-label={`Open ${lab.project}`}>Open lab</a>
+                </article>
+              ))}
             </div>
-            <span className="lab-category">{categoryLabels[lab.category]}</span>
-            <span className="lab-status">{lab.status}</span>
-          </article>
+          </section>
         ))}
       </section>
 
-      {!visibleLabs.length && <p className="empty-state">No labs match that search.</p>}
+      {!visibleLabs.length && (
+        <div className="empty-state">
+          <p role="status">No labs match that search and category.</p>
+          <button type="button" onClick={clearFilters}>Clear filters</button>
+        </div>
+      )}
+
+      <footer className="catalog-footer">
+        <p>All {manifest.labs.length} projects are functional and backed by completed certificates.</p>
+        <strong>Built to solve. Tested to prove. Documented to last.</strong>
+        <a href="#catalog-title">Back to top</a>
+      </footer>
     </main>
   );
 }

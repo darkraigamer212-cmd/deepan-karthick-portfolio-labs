@@ -22,23 +22,22 @@ PROFILE_LOCAL = ROOT / "profile_data.json"
 
 DEFAULT_PROFILE = {
     "name": "Deepan Karthick",
-    "email": "ADD_EMAIL",
-    "phone": "ADD_PHONE",
-    "city_country": "ADD_CITY_COUNTRY",
-    "github_url": "ADD_GITHUB_URL",
-    "linkedin_url": "ADD_LINKEDIN_URL",
-    "portfolio_url": "ADD_PORTFOLIO_URL",
-    "degree": "ADD_DEGREE",
-    "college": "ADD_COLLEGE",
-    "graduation_year": "ADD_GRADUATION_YEAR",
-    "experience_dates": "ADD_DATES",
+    "email": "deepankarthick212@gmail.com",
+    "phone": "9487572163",
+    "city_country": "Coimbatore, Tamil Nadu, India",
+    "github_url": "https://github.com/darkraigamer212-cmd",
+    "linkedin_url": "https://www.linkedin.com/in/deepan-karthick-166735374/",
+    "portfolio_url": "https://deepan-karthick-portfolio.industrious-keyboard.workers.dev/",
+    "degree": "B.Sc. Computer Science with Artificial Intelligence",
+    "college": "Rathinam Global University, Coimbatore",
+    "graduation_year": "Expected 2028",
+    "experience_dates": "2026-Present",
 }
 
 
 def load_profile():
-    source = PROFILE_LOCAL if PROFILE_LOCAL.exists() else PROFILE_EXAMPLE
-    if source.exists():
-        with source.open("r", encoding="utf-8") as fh:
+    if PROFILE_LOCAL.exists():
+        with PROFILE_LOCAL.open("r", encoding="utf-8") as fh:
             data = json.load(fh)
         return {**DEFAULT_PROFILE, **data}
     return DEFAULT_PROFILE.copy()
@@ -71,50 +70,49 @@ def render_value(text, profile):
 
 
 ATS = {
+    "variant": "ats",
+    "accent": "1E4A37",
     "filename": "karthik_ats_resume.docx",
     "pdf_filename": "karthik_ats_resume.pdf",
-    "subtitle": "B.Sc. CS (AI) Student | AI Automation Developer | React | Python",
+    "subtitle": "B.Sc. CS (AI) Student | React & Python | Business Software | Applied AI",
     "sections": [
         (
             "Summary",
             [
-                "Computer Science with Artificial Intelligence student building Python automation tools, React dashboards, ERP-style workflows, and PDF/DOCX report generators. Strongest proof: rental research automation with filtering/scoring logic, offline sample data, generated reports, and unit tests."
+                "Computer Science with Artificial Intelligence student building practical React and JavaScript software for local-business workflows plus defensive, local-first AI, data, cloud, and cybersecurity prototypes. Delivered two working flagship products and a 30-project Applied Labs catalog supported by 142 lab-focused tests; the full repository suite passes 151 tests. Seeking software engineering internships and startup-project opportunities."
             ],
         ),
         (
             "Skills",
             [
-                "Languages: Python, JavaScript, HTML, CSS, C, TypeScript basics",
-                "Frontend and data: React, Vite, Supabase, ReportLab, python-docx, data analysis, data structures, Django basics",
-                "Tools and areas: Git, GitHub, GitHub Actions, VS Code, CLI tools, AI-assisted development with manual verification, REST API basics, PostgreSQL basics, ERP workflows, dashboards, testing, documentation, cloud fundamentals, Docker basics, GSAP basics, Framer Motion basics",
+                "Languages: Python, JavaScript, C, HTML, CSS; TypeScript basics",
+                "Applications and data: React, Vite, responsive UI, dashboards, JSON/CSV validation, data analysis, local-first workflows, PDF/DOCX generation",
+                "Engineering: Git, GitHub, automated testing, CI workflows, defensive input validation, REST API basics, Supabase/PostgreSQL basics, cloud/networking fundamentals, technical documentation, AI-assisted development with manual verification",
             ],
         ),
         (
-            "Course Credentials",
+            "Credentials",
             [
-                "AI and ML: Machine Learning Specialization; Neural Networks and Deep Learning; Convolutional Neural Networks; NLP with Attention Models; Generative AI; GANs.",
-                "Cloud and security: Microsoft Azure Fundamentals (AZ-900) Cert Prep; Google Cloud Digital Leader Certification Prep; AWS Cloud Practitioner Essentials; IBM Cybersecurity Essentials.",
-                "Software and data: Front-End Development; Python; Data Structures in C; Programming with C; Data Analysis with Python; cloud computing. Full 23-course archive: portfolio link.",
+                "30 completed credentials across machine learning, generative AI, cloud, networking, programming, data analysis, business, and cybersecurity; certificate archive and working prototypes are linked from the portfolio.",
             ],
         ),
         (
                 "Projects",
             [
-                "Rental Research Report Generator | Python, ReportLab, python-docx, JSON",
-                "Built a Python automation workflow that normalizes rental listing data, filters unsuitable options, ranks matches, and generates PDF/DOCX decision reports.",
-                "Implemented scoring/filters for rent range, listing type, commute distance, furnishing, deposit practicality, and unsuitable categories.",
-                "Generated English/Tamil outputs with ranked properties, budgets, verification checklist, source links, offline sample data, and unit tests.",
-                "Printing Press ERP / Business Management System | React, Supabase, JavaScript, Vite",
-                "Built and deployed React/Supabase business software screens for printing press workflows, dashboards, and operational tracking.",
-                "Modeled local-business workflows including inventory, production tracking, order operations, and role-based access concepts.",
-                "Portfolio Website | React, Vite, Framer Motion, GSAP",
-                "Created a public developer portfolio and one-tap links page with project proof, resume links, GitHub, LinkedIn, live demos, and contact actions.",
+                "Printing Press ERP | React, TypeScript/JavaScript, Vite, Supabase-compatible architecture",
+                "Repaired and deployed a synthetic public demo with owner dashboards, browser-local order/production workflows, persistence, route navigation, and production-priority updates while isolating live client data and authentication.",
+                "Verified runtime/store behavior, dashboard routes, SPA deep links, lint, production build, persistence, and a Cloudflare Workers deployment.",
+                "Timber CFT Pro with Billing | React, JavaScript, Vite",
+                "Converted supplied timber rules into browser-local CFT, ICBM, and raw-millimetre M3 calculations with CFT/M3 pricing, discount, GST, payments, balance/change, strict validation, local history, reopen, and print/Save PDF.",
+                "Excluded imported client database files and verified preserved measurement and invoice rules with automated tests.",
+                "Applied Labs | React, JavaScript, Python/C artifact generation",
+                "Built 30 certificate-connected prototypes across five categories. Selected evidence includes CSV Claim Stress Tester, Detection Contract Drift Guard, Feature Misuse Contract, and Share-Link Afterlife Rehearsal; the full repository suite passes 151 automated tests.",
             ],
         ),
         (
             "Education",
             [
-                "ADD_DEGREE, ADD_COLLEGE - ADD_GRADUATION_YEAR",
+                "ADD_DEGREE, ADD_COLLEGE - ADD_GRADUATION_YEAR | Semester 3 | CGPA 8.0",
                 "Relevant coursework: Artificial Intelligence, Programming, Data Structures, Web Development, Database Systems",
             ],
         ),
@@ -123,69 +121,73 @@ ATS = {
 
 
 STARTUP = {
+    "variant": "startup",
+    "accent": "C4512B",
     "filename": "karthik_startup_resume.docx",
     "pdf_filename": "karthik_startup_resume.pdf",
-    "subtitle": "Python automation + React dashboards + practical business software",
+    "subtitle": "Practical software for real business decisions",
     "sections": [
         (
             "Profile",
             [
-                "I build practical tools that turn messy work into usable software: ranked lists, PDF/DOCX reports, React dashboards, ERP-style workflows, automations, and AI-assisted development workflows with manual verification. I am looking for remote internships, freelance projects, contract work, and part-time developer roles where speed, ownership, and clear communication matter."
+                "B.Sc. Computer Science with AI student turning unclear, manual work into small, reviewable software. Current proof: two working business products plus 30 certificate-connected prototypes. I use AI to accelerate planning and debugging while keeping rules, claims, tests, privacy boundaries, and documentation manually reviewable."
             ],
         ),
         (
-            "What I Can Help With",
+            "What I Build",
             [
-                "Python automation, PDF/DOCX report generation, React dashboards and internal tools, data cleanup and structured summaries, and AI-assisted prototyping with documentation and testing.",
+                "React dashboards and internal tools; local-business workflow software; Python/JavaScript automation; data validation; defensive security planning tools; PDF/DOCX output; tested AI-assisted prototypes.",
             ],
         ),
         (
                 "Best Proof",
             [
-                "Rental Research Report Generator | Python, ReportLab, python-docx, JSON",
-                "Built a Python tool that normalizes rental listing data, filters noisy results, ranks suitable houses, and generates decision reports in English and Tamil.",
-                "Replaced scattered rental searching with a structured shortlist, budget and commute logic, PDF/DOCX/Markdown outputs, and real-world verification safeguards.",
-                "Added offline sample data and unit tests so the project can be shown reliably without live portals.",
-                "Printing Press ERP / Business Management System | React, Supabase, business workflows",
-                "Built and deployed practical React/Supabase business software for workflow tracking and operational dashboards.",
+                "01 / Printing Press ERP | React, TypeScript/JavaScript, Vite, Cloudflare",
+                "Deployed a synthetic business-workflow demo with owner dashboards, local order/production workflows, persistence, route verification, and an explicit boundary from live client data and authentication.",
+                "02 / Timber CFT Pro with Billing | React, JavaScript, deterministic domain modules",
+                "Preserved supplied timber measurement rules and added pricing, discount, GST, payments, balance/change, strict validation, local history, reopen, and print/Save PDF without shipping the imported client database.",
+                "30 / Applied Labs | Five categories, 142 lab-focused tests",
+                "Each certificate maps to a working prototype with a named user, practical problem, inspectable decision logic, reusable output, tests, safety boundaries, and limitations. Selected labs generate claim evidence, regression harnesses, acceptance contracts, and rollback plans.",
             ],
         ),
         (
             "Skills",
             [
-                "Python, JavaScript, React, Vite, Supabase, Django basics, HTML, CSS, C, data analysis, data structures, TypeScript basics, REST APIs, PostgreSQL, Git, GitHub, GitHub Actions, cloud fundamentals, Docker basics, Codex, ChatGPT, AI-assisted development, prompt engineering, ERP development, dashboard development, business software, automation, PDF/DOCX generation, responsive web design, UI/UX design, basic testing, CI/CD basics, CLI tools, technical documentation, GSAP basics, Framer Motion basics"
+                "React, JavaScript, Python, C, HTML, CSS, Vite, Git/GitHub, automated testing, responsive UI, dashboards, business workflows, data validation, defensive security tooling, cloud/networking fundamentals, Supabase/PostgreSQL basics, PDF/DOCX generation, technical documentation, and AI-assisted engineering with manual verification"
             ],
         ),
         (
             "Learning Evidence",
             [
-                "Completed 23 course credentials across machine learning, generative AI, cloud fundamentals, cybersecurity, programming, data analysis, and front-end development. Certificate archive available from the portfolio."
+                "Completed 30 credentials across machine learning, generative AI, cloud, networking, programming, data analysis, business, and cybersecurity; each is represented by a working Applied Lab."
             ],
         ),
         (
             "Education",
-            ["ADD_DEGREE, ADD_COLLEGE - ADD_GRADUATION_YEAR"],
+            ["ADD_DEGREE, ADD_COLLEGE - ADD_GRADUATION_YEAR | Semester 3 | CGPA 8.0"],
         ),
     ],
 }
 
 
-def style_doc(doc):
+def style_doc(doc, data):
     section = doc.sections[0]
-    section.top_margin = Inches(0.65)
-    section.bottom_margin = Inches(0.65)
-    section.left_margin = Inches(0.72)
-    section.right_margin = Inches(0.72)
+    section.top_margin = Inches(0.58)
+    section.bottom_margin = Inches(0.58)
+    section.left_margin = Inches(0.68)
+    section.right_margin = Inches(0.68)
+    section.header_distance = Inches(0.3)
+    section.footer_distance = Inches(0.3)
 
     normal = doc.styles["Normal"]
     normal.font.name = "Arial"
     normal._element.rPr.rFonts.set(qn("w:eastAsia"), "Arial")
-    normal.font.size = Pt(10)
-    normal.paragraph_format.space_after = Pt(3)
-    normal.paragraph_format.line_spacing = 1.08
+    normal.font.size = Pt(9.35 if data["variant"] == "ats" else 9.45)
+    normal.paragraph_format.space_after = Pt(2.5)
+    normal.paragraph_format.line_spacing = 1.04
 
     for style_name, size, color in [
-        ("Heading 1", 13, "0F766E"),
+        ("Heading 1", 12.2, data["accent"]),
         ("Heading 2", 11, "111827"),
     ]:
         style = doc.styles[style_name]
@@ -194,8 +196,17 @@ def style_doc(doc):
         style.font.size = Pt(size)
         style.font.bold = True
         style.font.color.rgb = RGBColor.from_string(color)
-        style.paragraph_format.space_before = Pt(8)
-        style.paragraph_format.space_after = Pt(3)
+        style.paragraph_format.space_before = Pt(6)
+        style.paragraph_format.space_after = Pt(2.5)
+
+    bullet = doc.styles["List Bullet"]
+    bullet.font.name = "Arial"
+    bullet._element.rPr.rFonts.set(qn("w:eastAsia"), "Arial")
+    bullet.font.size = Pt(9.2)
+    bullet.paragraph_format.left_indent = Inches(0.24)
+    bullet.paragraph_format.first_line_indent = Inches(-0.14)
+    bullet.paragraph_format.space_after = Pt(1.8)
+    bullet.paragraph_format.line_spacing = 1.03
 
 
 def add_para(doc, text, bold=False, size=10, color="111827", align=None):
@@ -214,27 +225,25 @@ def add_para(doc, text, bold=False, size=10, color="111827", align=None):
 
 
 def add_bullet(doc, text):
-    p = doc.add_paragraph(style=None)
-    p.paragraph_format.left_indent = Inches(0.22)
-    p.paragraph_format.first_line_indent = Inches(-0.12)
-    p.paragraph_format.space_after = Pt(2)
-    run = p.add_run("- " + text)
+    p = doc.add_paragraph(style="List Bullet")
+    run = p.add_run(text)
     run.font.name = "Arial"
     run._element.rPr.rFonts.set(qn("w:eastAsia"), "Arial")
-    run.font.size = Pt(10)
+    run.font.size = Pt(9.2)
     run.font.color.rgb = RGBColor.from_string("111827")
 
 
 def build_resume(data, profile):
     doc = Document()
-    style_doc(doc)
+    style_doc(doc, data)
 
-    add_para(doc, profile["name"], bold=True, size=20, color="111827", align=WD_ALIGN_PARAGRAPH.CENTER)
-    add_para(doc, data["subtitle"], size=10.5, color="0F766E", align=WD_ALIGN_PARAGRAPH.CENTER)
+    name_size = 21 if data["variant"] == "startup" else 19
+    add_para(doc, profile["name"], bold=True, size=name_size, color="171713", align=WD_ALIGN_PARAGRAPH.CENTER)
+    add_para(doc, data["subtitle"], size=10.5, color=data["accent"], align=WD_ALIGN_PARAGRAPH.CENTER)
     add_para(
         doc,
         contact_line(profile),
-        size=8.8,
+        size=8.3,
         color="4B5563",
         align=WD_ALIGN_PARAGRAPH.CENTER,
     )
@@ -259,8 +268,9 @@ def build_resume(data, profile):
     return path
 
 
-def pdf_styles():
+def pdf_styles(data):
     base = getSampleStyleSheet()
+    accent = colors.HexColor(f"#{data['accent']}")
     return {
         "name": ParagraphStyle(
             "Name",
@@ -279,7 +289,7 @@ def pdf_styles():
             fontSize=10,
             leading=13,
             alignment=1,
-            textColor=colors.HexColor("#0F766E"),
+            textColor=accent,
             spaceAfter=3,
         ),
         "contact": ParagraphStyle(
@@ -298,7 +308,7 @@ def pdf_styles():
             fontName="Helvetica-Bold",
             fontSize=12,
             leading=15,
-            textColor=colors.HexColor("#0F766E"),
+            textColor=accent,
             spaceBefore=8,
             spaceAfter=3,
         ),
@@ -306,8 +316,8 @@ def pdf_styles():
             "Body",
             parent=base["BodyText"],
             fontName="Helvetica",
-            fontSize=9.2,
-            leading=12,
+            fontSize=9.0,
+            leading=10.7,
             textColor=colors.HexColor("#111827"),
             spaceAfter=3,
         ),
@@ -315,8 +325,8 @@ def pdf_styles():
             "Strong",
             parent=base["BodyText"],
             fontName="Helvetica-Bold",
-            fontSize=9.2,
-            leading=12,
+            fontSize=9.0,
+            leading=10.7,
             textColor=colors.HexColor("#111827"),
             spaceAfter=3,
         ),
@@ -324,8 +334,8 @@ def pdf_styles():
             "Bullet",
             parent=base["BodyText"],
             fontName="Helvetica",
-            fontSize=9.0,
-            leading=11.5,
+            fontSize=8.8,
+            leading=10.4,
             leftIndent=12,
             firstLineIndent=-8,
             textColor=colors.HexColor("#111827"),
@@ -344,7 +354,7 @@ def xml_escape(text):
 
 
 def build_resume_pdf(data, profile):
-    styles = pdf_styles()
+    styles = pdf_styles(data)
     path = OUT / data["pdf_filename"]
     doc = SimpleDocTemplate(
         str(path),
