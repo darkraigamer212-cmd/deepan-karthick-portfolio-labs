@@ -13,7 +13,12 @@ const implementedLabs = {
   "genai-lifecycle-explorer": lazy(() => import("./labs/GenAiLifecycleExplorer.jsx")),
   "ai-opportunity-scorer": lazy(() => import("./labs/AiOpportunityScorer.jsx")),
   "prompt-workbench": lazy(() => import("./labs/PromptWorkbench.jsx")),
-  "ml-model-lab": lazy(() => import("./labs/MlModelLab.jsx"))
+  "ml-model-lab": lazy(() => import("./labs/MlModelLab.jsx")),
+  "cloud-regret-premortem": lazy(() => import("./labs/CloudRegretPremortem.jsx")),
+  "aws-outage-storyboard": lazy(() => import("./labs/AwsCustomerJourneyOutageStoryboard.jsx")),
+  "azure-access-handoff": lazy(() => import("./labs/AzureAccessHandoffSimulator.jsx")),
+  "gcp-promise-ledger": lazy(() => import("./labs/GcpTransformationPromiseLedger.jsx")),
+  "network-change-rollback": lazy(() => import("./labs/NetworkChangeRollbackComposer.jsx"))
 };
 
 const categoryLabels = {

@@ -1,9 +1,11 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  buildLatentSvgFilename,
   createLatentVariations,
   GAN_EXAMPLE_INPUT,
   generateLatentSample,
+  serializeLatentSvg,
   validateLatentInput
 } from "../labs-src/labs/ganLatentModel.js";
 
@@ -43,3 +45,33 @@ test("GAN variation gallery produces deterministic nearby samples within bounds"
   assert.equal(new Set(variations.map((item) => item.sample.signature)).size, 4);
 });
 
+test("SVG export is stable and embeds accessible simulation provenance", () => {
+  const sample = generateLatentSample(GAN_EXAMPLE_INPUT).sample;
+  const first = serializeLatentSvg(sample);
+  const second = serializeLatentSvg(sample);
+  assert.equal(first, second);
+  assert.match(first, /<title id="latent-title">Abstract background/);
+  assert.match(first, /<desc id="latent-description">/);
+  assert.match(first, /aria-labelledby="latent-title latent-description"/);
+  assert.match(first, /not a trained GAN/);
+  assert.match(first, new RegExp(sample.signature));
+  assert.match(first, new RegExp(sample.seed));
+  assert.match(first, /&quot;style&quot;:&quot;orbit&quot;/);
+  assert.equal((first.match(/<(circle|ellipse|rect|polygon)\b/gu) || []).length, sample.shapes.length + 1);
+});
+
+test("SVG export escapes custom titles, seed metadata, and descriptions", () => {
+  const sample = generateLatentSample({ ...GAN_EXAMPLE_INPUT, seed: "design<&seed" }).sample;
+  const svg = serializeLatentSvg(sample, { title: "Hero <Background> & Accent" });
+  assert.match(svg, /Hero &lt;Background&gt; &amp; Accent/);
+  assert.match(svg, /design&lt;&amp;seed/);
+  assert.doesNotMatch(svg, /Hero <Background>/);
+  assert.doesNotMatch(svg, /design<&seed/);
+});
+
+test("SVG filename is useful, stable, and filesystem-safe", () => {
+  const sample = generateLatentSample(GAN_EXAMPLE_INPUT).sample;
+  const filename = buildLatentSvgFilename(sample);
+  assert.equal(filename, `abstract-background-orbit-${sample.signature}.svg`);
+  assert.match(filename, /^[a-z0-9-]+\.svg$/u);
+});

@@ -46,6 +46,43 @@ function round(value, places = 3) {
   return Math.round(value * scale) / scale;
 }
 
+function escapeXml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&apos;");
+}
+
+function svgColor({ hue, saturation, lightness }) {
+  return `hsl(${hue} ${saturation}% ${lightness}%)`;
+}
+
+function svgPolygonPoints(shape) {
+  const points = [];
+  for (let index = 0; index < shape.sides; index += 1) {
+    const angle = (Math.PI * 2 * index) / shape.sides - Math.PI / 2;
+    points.push(`${shape.cx + Math.cos(angle) * shape.width / 2},${shape.cy + Math.sin(angle) * shape.height / 2}`);
+  }
+  return points.join(" ");
+}
+
+function serializeShape(shape, palette) {
+  const fill = escapeXml(svgColor(palette[shape.paletteIndex]));
+  const transform = `rotate(${shape.rotation} ${shape.cx} ${shape.cy})`;
+  if (shape.kind === "circle") {
+    return `<circle cx="${shape.cx}" cy="${shape.cy}" r="${shape.width / 2}" fill="${fill}" opacity="${shape.opacity}" />`;
+  }
+  if (shape.kind === "ellipse") {
+    return `<ellipse cx="${shape.cx}" cy="${shape.cy}" rx="${shape.width / 2}" ry="${shape.height / 2}" fill="${fill}" opacity="${shape.opacity}" transform="${escapeXml(transform)}" />`;
+  }
+  if (shape.kind === "rect") {
+    return `<rect x="${shape.cx - shape.width / 2}" y="${shape.cy - shape.height / 2}" width="${shape.width}" height="${shape.height}" rx="3" fill="${fill}" opacity="${shape.opacity}" transform="${escapeXml(transform)}" />`;
+  }
+  return `<polygon points="${escapeXml(svgPolygonPoints(shape))}" fill="${fill}" opacity="${shape.opacity}" transform="${escapeXml(transform)}" />`;
+}
+
 export function validateLatentInput(input) {
   const errors = [];
   const x = typeof input?.x === "number" ? input.x : Number(input?.x);
@@ -145,3 +182,50 @@ export function createLatentVariations(input, count = 4, distance = 0.9) {
   });
 }
 
+/**
+ * Create a reusable, standalone SVG with embedded provenance. The artwork is a
+ * deterministic simulation and the metadata deliberately does not claim GAN output.
+ */
+export function serializeLatentSvg(sample, options = {}) {
+  if (!sample?.signature || !sample?.seed || !Object.hasOwn(GAN_STYLES, sample?.style)) {
+    throw new TypeError("A valid generated latent sample is required for SVG export.");
+  }
+  if (!Array.isArray(sample.shapes) || !Array.isArray(sample.palette)) {
+    throw new TypeError("The latent sample is missing shapes or palette data.");
+  }
+
+  const title = String(options.title || `Abstract background ${sample.signature}`).trim();
+  if (!title) throw new RangeError("SVG title cannot be empty.");
+  const description = `Deterministic latent-space simulation, not a trained GAN. Seed ${sample.seed}; style ${GAN_STYLES[sample.style].label}; coordinates ${sample.coordinates.x}, ${sample.coordinates.y}; signature ${sample.signature}.`;
+  const metadata = JSON.stringify({
+    generator: "Deepan Karthick Applied Labs / GAN Latent Gallery",
+    outputType: "deterministic latent-space simulation; not a trained GAN",
+    signature: sample.signature,
+    seed: sample.seed,
+    style: sample.style,
+    styleLabel: GAN_STYLES[sample.style].label,
+    coordinates: sample.coordinates
+  });
+  const background = `hsl(${sample.backgroundHue} 35% 12%)`;
+  const shapes = sample.shapes.map((shape) => serializeShape(shape, sample.palette)).join("\n  ");
+
+  return [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1600" height="1600" role="img" aria-labelledby="latent-title latent-description">',
+    `  <title id="latent-title">${escapeXml(title)}</title>`,
+    `  <desc id="latent-description">${escapeXml(description)}</desc>`,
+    `  <metadata>${escapeXml(metadata)}</metadata>`,
+    `  <rect width="100" height="100" fill="${escapeXml(background)}" />`,
+    `  ${shapes}`,
+    "</svg>"
+  ].join("\n");
+}
+
+export function buildLatentSvgFilename(sample) {
+  if (!sample?.signature || !sample?.style) {
+    throw new TypeError("A generated latent sample is required for the filename.");
+  }
+  const style = String(sample.style).toLocaleLowerCase("en").replace(/[^a-z0-9]+/gu, "-").replace(/^-|-$/gu, "");
+  const signature = String(sample.signature).toLocaleLowerCase("en").replace(/[^a-z0-9]+/gu, "");
+  return `abstract-background-${style || "style"}-${signature || "sample"}.svg`;
+}

@@ -4,7 +4,7 @@ Last updated: 2026-08-22
 
 ## Current phase
 
-Batch 0 through Batch 3 functional work is complete. Both flagships are functional, the Printing Press ERP is claimed and verified on Cloudflare, and Labs 01-10 have passed automated and browser acceptance. Batch 4 is next.
+Batch 0 through Batch 4 functional work is complete. Both flagships are functional, the Printing Press ERP is claimed and verified on Cloudflare, and Labs 01-14 plus Lab 26 have passed automated and browser acceptance under the usefulness and originality gates.
 
 ## Confirmed product decisions
 
@@ -68,15 +68,24 @@ Batch 0 through Batch 3 functional work is complete. Both flagships are function
 - Expanded the automated suite to 53 passing tests and passed the combined portfolio, Applied Labs, and Timber production build.
 - Browser-tested every Batch 3 lab workflow and the Prompt Workbench clipboard state with no console warnings or errors.
 - Found and fixed page-level mobile overflow from ML result tables; re-verified at 390 × 844.
+- Repaired Lab 03 so a designer or student can select and download a deterministic 1600 x 1600 SVG background with reproducibility and simulation-provenance metadata.
+- Added Lab 11 Cloud Regret Pre-Mortem with five failure scenarios, transparent planning assumptions, reversible pilot rules, exit test, and decision memo.
+- Added Lab 12 AWS Customer-Journey Outage Storyboard with journey-tied failure cards, evidence, containment, fallback, recovery proof, and facilitator checklist.
+- Added Lab 13 Azure Access Handoff Simulator with local joiner/mover/leaver risk detection, owned actions, evidence requirements, and a copyable checklist.
+- Added Lab 14 GCP Transformation Promise Ledger with a falsifiable hypothesis, reversible pilot, assumption ledger, evidence gates, triggers, risks, and sponsor memo.
+- Added Lab 26 Network Change Rollback Composer with CIDR normalization, inventory diffing, overlap/capacity safety blockers, rollback steps, and stakeholder summary.
+- Expanded the automated suite to 78 passing tests and passed the combined portfolio, Applied Labs, and Timber production build.
+- Browser-tested every Batch 4 example plus Lab 26's blocked-overlap path with no console warnings or errors.
+- Verified the two densest Batch 4 tools at a 390px viewport with no page-level horizontal overflow.
+- Recorded a dated prior-art review, specific differentiators, and the explicit boundary against unsupported worldwide-novelty claims.
 
-## Next batch
+## In progress
 
-- Batch 4: Labs 11-14 and 26.
-- Implement cloud TCO planning, AWS/Azure/GCP service navigation, and networking/subnet calculations.
+- Batch 5 planning: Labs 15-19 under the same real-user, reusable-output, originality, safety, test, build, and browser gates.
 
 ## Next checkpoint
 
-Implement and accept Labs 11-14 and 26 without mixing in final portfolio visual redesign work.
+Define and implement original, useful workflows for Labs 15-19, then run the full acceptance gate before creating the next checkpoint.
 
 ## Known risks
 

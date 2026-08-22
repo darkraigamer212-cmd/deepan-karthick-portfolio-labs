@@ -1,4 +1,4 @@
-import{r as f,j as e}from"./index-D5tX1H7w.js";const y=new Set(["a","an","and","are","as","at","be","by","can","could","for","from","how","in","is","it","may","of","on","or","that","the","this","to","was","what","when","where","which","who","why","with"]),g={corpus:`The City Library opens at 9:00 AM from Monday to Saturday. It closes at 7:00 PM on weekdays and at 5:00 PM on Saturday. The library is closed on Sunday and public holidays.
+import{r as f,j as e}from"./index-C2qh18fr.js";const y=new Set(["a","an","and","are","as","at","be","by","can","could","for","from","how","in","is","it","may","of","on","or","that","the","this","to","was","what","when","where","which","who","why","with"]),g={corpus:`The City Library opens at 9:00 AM from Monday to Saturday. It closes at 7:00 PM on weekdays and at 5:00 PM on Saturday. The library is closed on Sunday and public holidays.
 
 Members may borrow up to five books for 21 days. A book can be renewed twice when no other member has reserved it. Reference books and newspapers must remain inside the library.
 

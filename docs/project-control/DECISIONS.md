@@ -39,3 +39,11 @@ The repaired public ERP demo is deployed as a static single-page application on 
 ## 2026-08-22 - AI labs use transparent deterministic models first
 
 Functional AI/ML certificate labs must run locally without model downloads, API keys, or invented AI output. Where a trained model is impractical for a stable static demo, the lab uses a clearly labelled deterministic simulation that exposes the underlying transformation. The interface must state when it is not a trained GAN, CNN, language model, or production RAG system.
+
+## 2026-08-22 - Real-world usefulness is a batch gate
+
+Every certificate project must be useful beyond demonstrating a course concept. Each lab names a plausible user, accepts inputs that person can realistically know, produces an actionable output, and explains a safe next step. A visualization without a decision, calculation, reusable artifact, or practical workflow does not pass acceptance.
+
+## 2026-08-22 - Original combinations instead of common clones
+
+Planned labs may not ship as ordinary calculators, provider-service quizzes, copied tutorials, or simplified versions of familiar commercial tools. Each lab receives a prior-art search and must document a distinctive combination of user problem, workflow, and output. Because exhaustive worldwide novelty cannot be proven, the portfolio will describe these as original implementations and will not make an unsupported “world first” claim.
