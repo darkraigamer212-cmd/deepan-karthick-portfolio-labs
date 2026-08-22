@@ -1,7 +1,15 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import manifest from "../docs/project-control/project-manifest.json";
 import "./styles.css";
+
+const implementedLabs = {
+  "ai-workflow-canvas": lazy(() => import("./labs/AIWorkflowCanvas.jsx")),
+  "mini-rag-studio": lazy(() => import("./labs/MiniRagStudio.jsx")),
+  "gan-latent-gallery": lazy(() => import("./labs/GanLatentGallery.jsx")),
+  "cnn-feature-explorer": lazy(() => import("./labs/CnnFeatureExplorer.jsx")),
+  "attention-text-explorer": lazy(() => import("./labs/AttentionTextExplorer.jsx"))
+};
 
 const categoryLabels = {
   "ai-ml": "AI & machine learning",
@@ -114,6 +122,8 @@ function LabRoute({ lab }) {
     );
   }
 
+  const LabComponent = implementedLabs[lab.slug];
+
   return (
     <main className="lab-detail">
       <a href="#/">Back to all labs</a>
@@ -125,10 +135,16 @@ function LabRoute({ lab }) {
         <div><dt>Delivery batch</dt><dd>{lab.batch}</dd></div>
         <div><dt>Current status</dt><dd>{lab.status}</dd></div>
       </dl>
-      <section className="implementation-notice">
-        <h2>Functional model pending</h2>
-        <p>This route is reserved and working. The interactive model will be implemented and tested in its assigned batch.</p>
-      </section>
+      {LabComponent ? (
+        <Suspense fallback={<p className="implementation-notice" role="status">Loading functional model…</p>}>
+          <LabComponent />
+        </Suspense>
+      ) : (
+        <section className="implementation-notice">
+          <h2>Functional model pending</h2>
+          <p>This route is reserved and working. The interactive model will be implemented and tested in its assigned batch.</p>
+        </section>
+      )}
     </main>
   );
 }

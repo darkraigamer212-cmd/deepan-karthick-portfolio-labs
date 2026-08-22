@@ -24,10 +24,9 @@ The Printing Press ERP now has a reliable public demo runtime. It starts with fi
 - Platform: Cloudflare Workers Static Assets.
 - Temporary URL: `https://lakshmipriya-erp-demo.industrious-keyboard.workers.dev`.
 - Cloudflare version: `4bd9ebd0-69d8-4c3f-b238-947fde815cc5`.
-- Status: live and verified, but permanent ownership is pending the user's temporary-deployment claim.
+- Status: claimed, live, and re-verified after the ownership handoff.
 
 ## Deferred work
 
-- Re-verify the URL after the Cloudflare deployment is claimed.
-- Replace the ERP flagship link in the portfolio only after permanent ownership is confirmed.
+- Monitor the Cloudflare deployment as part of the final production health-check batch.
 - Address the dependency audit's 2 moderate and 5 high advisories in a separate tested maintenance pass.

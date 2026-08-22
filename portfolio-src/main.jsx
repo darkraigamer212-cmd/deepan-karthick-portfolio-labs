@@ -13,7 +13,7 @@ const links = {
   linkedin: "https://www.linkedin.com/in/deepan-karthick-166735374/",
   email: "mailto:deepankarthick212@gmail.com",
   calculator: "https://calculator00.pages.dev/",
-  erp: "https://lakshmipriya-erp.vercel.app/home",
+  erp: "https://lakshmipriya-erp-demo.industrious-keyboard.workers.dev/owner",
   samplePdf: "../output/pdf/sample_rental_research_pack.pdf",
   caseStudy: "../docs/project_case_study_rental_research.md",
   certificateArchive: "./assets/certificates/Deepan_K_Certificates_Combined.pdf"

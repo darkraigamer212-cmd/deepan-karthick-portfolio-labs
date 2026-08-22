@@ -35,3 +35,7 @@ The public portfolio deployment runs in demo mode with synthetic browser-local d
 ## 2026-08-22 - Printing ERP uses Cloudflare Workers Static Assets
 
 The repaired public ERP demo is deployed as a static single-page application on Cloudflare Workers Static Assets, with SPA fallback enabled for direct routes such as `/owner`. The former Vercel deployment remains unchanged because its repository integration failed authentication. The portfolio link will change only after the Cloudflare deployment is claimed and its permanent URL is re-verified.
+
+## 2026-08-22 - AI labs use transparent deterministic models first
+
+Functional AI/ML certificate labs must run locally without model downloads, API keys, or invented AI output. Where a trained model is impractical for a stable static demo, the lab uses a clearly labelled deterministic simulation that exposes the underlying transformation. The interface must state when it is not a trained GAN, CNN, language model, or production RAG system.

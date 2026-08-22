@@ -6,20 +6,20 @@
     {
       "id": "printing-press-erp",
       "name": "Printing Press ERP",
-      "status": "audit-pending"
+      "status": "functional-complete"
     },
     {
       "id": "timber-cft-pro",
       "name": "Timber CFT Pro with Billing",
-      "status": "audit-in-progress"
+      "status": "functional-complete"
     }
   ],
   "labs": [
-    {"id":1,"slug":"ai-workflow-canvas","credential":"Generative AI for Everyone","project":"AI Workflow Canvas","category":"ai-ml","batch":2,"status":"planned"},
-    {"id":2,"slug":"mini-rag-studio","credential":"Generative AI with Large Language Models","project":"Mini RAG Studio","category":"ai-ml","batch":2,"status":"planned"},
-    {"id":3,"slug":"gan-latent-gallery","credential":"Build Basic Generative Adversarial Networks (GANs)","project":"GAN Latent Gallery","category":"ai-ml","batch":2,"status":"planned"},
-    {"id":4,"slug":"cnn-feature-explorer","credential":"Convolutional Neural Networks","project":"CNN Feature Explorer","category":"ai-ml","batch":2,"status":"planned"},
-    {"id":5,"slug":"attention-text-explorer","credential":"Natural Language Processing with Attention Models","project":"Attention Text Explorer","category":"ai-ml","batch":2,"status":"planned"},
+    {"id":1,"slug":"ai-workflow-canvas","credential":"Generative AI for Everyone","project":"AI Workflow Canvas","category":"ai-ml","batch":2,"status":"functional"},
+    {"id":2,"slug":"mini-rag-studio","credential":"Generative AI with Large Language Models","project":"Mini RAG Studio","category":"ai-ml","batch":2,"status":"functional"},
+    {"id":3,"slug":"gan-latent-gallery","credential":"Build Basic Generative Adversarial Networks (GANs)","project":"GAN Latent Gallery","category":"ai-ml","batch":2,"status":"functional"},
+    {"id":4,"slug":"cnn-feature-explorer","credential":"Convolutional Neural Networks","project":"CNN Feature Explorer","category":"ai-ml","batch":2,"status":"functional"},
+    {"id":5,"slug":"attention-text-explorer","credential":"Natural Language Processing with Attention Models","project":"Attention Text Explorer","category":"ai-ml","batch":2,"status":"functional"},
     {"id":6,"slug":"neural-network-playground","credential":"Neural Networks and Deep Learning","project":"Neural Network Playground","category":"ai-ml","batch":3,"status":"planned"},
     {"id":7,"slug":"genai-lifecycle-explorer","credential":"Introduction to Generative AI","project":"GenAI Lifecycle Explorer","category":"ai-ml","batch":3,"status":"planned"},
     {"id":8,"slug":"ai-opportunity-scorer","credential":"AI for Everyone","project":"AI Opportunity Scorer","category":"ai-ml","batch":3,"status":"planned"},

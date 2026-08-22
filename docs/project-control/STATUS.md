@@ -4,7 +4,7 @@ Last updated: 2026-08-22
 
 ## Current phase
 
-Batch 0 complete. Batch 1 functional work is complete. Timber CFT Pro + Billing reached its functional checkpoint, and the Printing Press ERP public demo is repaired and verified on Cloudflare. Permanent Cloudflare ownership is awaiting the user's deployment claim.
+Batch 0, Batch 1, and Batch 2 functional work are complete. Both flagships are functional, the Printing Press ERP is claimed and verified on Cloudflare, and Labs 01-05 have passed automated and browser acceptance. Batch 3 is next.
 
 ## Confirmed product decisions
 
@@ -50,15 +50,24 @@ Batch 0 complete. Batch 1 functional work is complete. Timber CFT Pro + Billing 
 - Passed 6 ERP runtime/store tests, lint, and the production build.
 - Browser-verified the owner dashboard, production priority persistence, major dashboard routes, SPA deep-link routing, and a clean console.
 - Deployed the repaired ERP demo to Cloudflare Workers Static Assets as version `4bd9ebd0-69d8-4c3f-b238-947fde815cc5`.
+- Re-verified the claimed Cloudflare ERP deployment and promoted its `/owner` URL into the portfolio source.
+- Added Lab 01 AI Workflow Canvas with validation, ordered workflow generation, review controls, risks, and readiness checks.
+- Added Lab 02 Mini RAG Studio with local chunking, deterministic retrieval, extractive answers, evidence scores, and citations.
+- Added Lab 03 GAN Latent Gallery with a deterministic 2D latent-space simulation and nearby SVG variations.
+- Added Lab 04 CNN Feature Explorer with editable 5 × 5 pixels, selectable kernels, convolution, and a visual 3 × 3 feature map.
+- Added Lab 05 Attention Text Explorer with transparent similarity, positional bias, softmax weights, ranking, and a heat sequence.
+- Added lazy-loaded routes for Labs 01-05 and marked them functional in the canonical manifest.
+- Passed all 30 current domain tests and the combined portfolio, Applied Labs, and Timber production build.
+- Browser-tested every Batch 2 lab workflow, including a 390 × 844 mobile check, with no console warnings or errors.
 
-## Awaiting handoff
+## Next batch
 
-- Claim the temporary Cloudflare deployment within its 60-minute ownership window.
-- Re-verify the claimed permanent deployment before replacing the portfolio's ERP link.
+- Batch 3: Labs 06-10.
+- Continue the functional-first pattern for neural networks, GenAI lifecycle, AI opportunity scoring, prompt engineering, and machine-learning model exploration.
 
 ## Next checkpoint
 
-After the Cloudflare claim is complete, confirm the permanent URL, update the portfolio flagship link, and begin Batch 2 certificate labs.
+Implement and accept Labs 06-10 without mixing in final portfolio visual redesign work.
 
 ## Known risks
 
@@ -67,5 +76,4 @@ After the Cloudflare claim is complete, confirm the permanent URL, update the po
 - The current timber "bill" is a measurement statement, not a financial invoice; rates, tax, payments, and balances must be implemented explicitly.
 - The existing portfolio source is large and must be simplified later without mixing visual redesign into functional batches.
 - External API dependencies would reduce demo reliability; core lab workflows must work without API keys.
-- The current Cloudflare URL belongs to a temporary deployment and will be deleted if it is not claimed in time.
 - The ERP dependency audit reports 2 moderate and 5 high advisories; remediation is deferred until it can be tested without destabilizing the working demo.
