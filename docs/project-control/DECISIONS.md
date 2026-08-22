@@ -27,3 +27,11 @@ The supplied Windows application remains the private offline edition for real bu
 ## 2026-08-22 - Timber financial billing is additive
 
 The verified timber formula remains unchanged. Financial billing is a separate calculation layer using a selectable CFT or M3 rate, invoice-level discount, optional GST percentage, paid amount, balance, and overpayment change. Currency defaults to INR. These are initial product assumptions and may be revised without changing timber measurement totals.
+
+## 2026-08-22 - Printing ERP demo and live modes are explicit
+
+The public portfolio deployment runs in demo mode with synthetic browser-local data and makes no Supabase requests. The private business deployment runs in live mode with Supabase authentication and fails closed. Demo authentication may never be combined with live backend access.
+
+## 2026-08-22 - Printing ERP uses Cloudflare Workers Static Assets
+
+The repaired public ERP demo is deployed as a static single-page application on Cloudflare Workers Static Assets, with SPA fallback enabled for direct routes such as `/owner`. The former Vercel deployment remains unchanged because its repository integration failed authentication. The portfolio link will change only after the Cloudflare deployment is claimed and its permanent URL is re-verified.

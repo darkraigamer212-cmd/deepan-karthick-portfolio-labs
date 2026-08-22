@@ -4,7 +4,7 @@ Last updated: 2026-08-22
 
 ## Current phase
 
-Batch 0 complete. Batch 1 is in progress. Timber CFT Pro + Billing has reached its functional checkpoint; Printing Press ERP repair is active.
+Batch 0 complete. Batch 1 functional work is complete. Timber CFT Pro + Billing reached its functional checkpoint, and the Printing Press ERP public demo is repaired and verified on Cloudflare. Permanent Cloudflare ownership is awaiting the user's deployment claim.
 
 ## Confirmed product decisions
 
@@ -44,16 +44,21 @@ Batch 0 complete. Batch 1 is in progress. Timber CFT Pro + Billing has reached i
 - Browser-tested the Timber sample, invoice totals, local save, reset, and reopen workflow.
 - Located the Printing Press ERP source in the private `lakshmipriya-erp` repository and cloned an isolated ignored copy for repair.
 - Reproduced the Printing ERP production failure: public pages load, but the owner dashboard remains on empty loading skeletons.
+- Added explicit demo and live runtime modes to Printing Press ERP.
+- Isolated the public demo from Supabase and replaced production-shaped records with clearly fictional browser-local data.
+- Added persistent demo order workflows and kept the authenticated Supabase edition behind explicit live mode.
+- Passed 6 ERP runtime/store tests, lint, and the production build.
+- Browser-verified the owner dashboard, production priority persistence, major dashboard routes, SPA deep-link routing, and a clean console.
+- Deployed the repaired ERP demo to Cloudflare Workers Static Assets as version `4bd9ebd0-69d8-4c3f-b238-947fde815cc5`.
 
-## In progress
+## Awaiting handoff
 
-- Add an explicit public demo runtime to Printing Press ERP so it never waits on or exposes the private Supabase backend.
-- Make the flagship dashboard and core quote/order-to-production workflows work with clearly synthetic browser-local data.
-- Keep the real authenticated Supabase edition separate from the public portfolio demo.
+- Claim the temporary Cloudflare deployment within its 60-minute ownership window.
+- Re-verify the claimed permanent deployment before replacing the portfolio's ERP link.
 
 ## Next checkpoint
 
-Repair the Printing Press ERP dashboard loading failure, then verify the synthetic order workflow in the browser.
+After the Cloudflare claim is complete, confirm the permanent URL, update the portfolio flagship link, and begin Batch 2 certificate labs.
 
 ## Known risks
 
@@ -62,4 +67,5 @@ Repair the Printing Press ERP dashboard loading failure, then verify the synthet
 - The current timber "bill" is a measurement statement, not a financial invoice; rates, tax, payments, and balances must be implemented explicitly.
 - The existing portfolio source is large and must be simplified later without mixing visual redesign into functional batches.
 - External API dependencies would reduce demo reliability; core lab workflows must work without API keys.
-- Printing Press ERP currently hardcodes a temporary owner bypass while still querying Supabase, which can leave public pages loading forever and risks mixing demo access with private infrastructure.
+- The current Cloudflare URL belongs to a temporary deployment and will be deleted if it is not claimed in time.
+- The ERP dependency audit reports 2 moderate and 5 high advisories; remediation is deferred until it can be tested without destabilizing the working demo.
