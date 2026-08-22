@@ -4,7 +4,7 @@ Last updated: 2026-08-22
 
 ## Current phase
 
-Batch 0 complete. Batch 1A - Timber CFT Pro public demo and financial billing model - is next.
+Batch 0 complete. Batch 1 is in progress. Timber CFT Pro + Billing has reached its functional checkpoint; Printing Press ERP repair is active.
 
 ## Confirmed product decisions
 
@@ -35,16 +35,25 @@ Batch 0 complete. Batch 1A - Timber CFT Pro public demo and financial billing mo
 - Verified the labs catalog at desktop and 390 x 844 mobile viewports.
 - Verified the cybersecurity filter returns 7 labs and Lab 24 routing works.
 - Confirmed there are no browser console warnings or errors in the tested flows.
+- Added the sanitized Timber CFT Pro + Billing React application.
+- Preserved the locked business-inch, CFT, ICBM, and raw-millimetre M3 rules in independent domain modules.
+- Added CFT/M3 pricing, discount, GST, payment, balance, and overpayment calculations.
+- Added strict measurement and invoice validation with safe demo limits.
+- Added browser-local save, history search, reopen, reset, synthetic sample, and print/Save PDF workflows.
+- Passed 9 Timber domain tests and the combined portfolio + labs + Timber production build.
+- Browser-tested the Timber sample, invoice totals, local save, reset, and reopen workflow.
+- Located the Printing Press ERP source in the private `lakshmipriya-erp` repository and cloned an isolated ignored copy for repair.
+- Reproduced the Printing ERP production failure: public pages load, but the owner dashboard remains on empty loading skeletons.
 
 ## In progress
 
-- Prepare a sanitized static Timber CFT Pro demo using browser-local persistence.
-- Add a real financial billing module without changing the verified timber formula.
-- Preserve the Windows offline edition as a separate, private-data local application.
+- Add an explicit public demo runtime to Printing Press ERP so it never waits on or exposes the private Supabase backend.
+- Make the flagship dashboard and core quote/order-to-production workflows work with clearly synthetic browser-local data.
+- Keep the real authenticated Supabase edition separate from the public portfolio demo.
 
 ## Next checkpoint
 
-Create the Timber calculation and invoice domain modules with independent golden tests before building its functional interface.
+Repair the Printing Press ERP dashboard loading failure, then verify the synthetic order workflow in the browser.
 
 ## Known risks
 
@@ -53,3 +62,4 @@ Create the Timber calculation and invoice domain modules with independent golden
 - The current timber "bill" is a measurement statement, not a financial invoice; rates, tax, payments, and balances must be implemented explicitly.
 - The existing portfolio source is large and must be simplified later without mixing visual redesign into functional batches.
 - External API dependencies would reduce demo reliability; core lab workflows must work without API keys.
+- Printing Press ERP currently hardcodes a temporary owner bypass while still querying Supabase, which can leave public pages loading forever and risks mixing demo access with private infrastructure.

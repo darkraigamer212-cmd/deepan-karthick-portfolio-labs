@@ -7,12 +7,15 @@
     "dev": "pnpm run dev:portfolio",
     "dev:portfolio": "vite --host 127.0.0.1",
     "dev:labs": "vite --config vite.labs.config.js --host 127.0.0.1",
-    "test": "node scripts/validate_project_manifest.mjs",
-    "build": "pnpm run test && pnpm run build:portfolio && pnpm run build:labs",
+    "dev:timber": "vite --config vite.timber.config.js --host 127.0.0.1",
+    "test": "node scripts/validate_project_manifest.mjs && node --test tests/timber-domain.test.mjs",
+    "build": "pnpm run test && pnpm run build:portfolio && pnpm run build:labs && pnpm run build:timber",
     "build:portfolio": "vite build",
     "build:labs": "vite build --config vite.labs.config.js",
+    "build:timber": "vite build --config vite.timber.config.js",
     "preview": "vite preview --host 127.0.0.1",
-    "preview:labs": "vite preview --config vite.labs.config.js --host 127.0.0.1"
+    "preview:labs": "vite preview --config vite.labs.config.js --host 127.0.0.1",
+    "preview:timber": "vite preview --config vite.timber.config.js --host 127.0.0.1"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.3.4",

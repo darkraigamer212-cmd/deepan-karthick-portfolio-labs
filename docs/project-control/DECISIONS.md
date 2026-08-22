@@ -19,3 +19,11 @@ The supplied ZIP contains source, dependencies, a bundled runtime, SQLite databa
 ## 2026-08-22 - Stable demos over external integrations
 
 Every core demo must work with local sample data. External APIs and AI providers may be optional enhancements but cannot be required for a reviewer to use the project.
+
+## 2026-08-22 - Timber local edition and public demo are separate products
+
+The supplied Windows application remains the private offline edition for real business records. The public flagship is a static demo with synthetic data and browser-local storage. The SQLite database, backup, bundled runtime, and launchers are excluded from Git and deployment.
+
+## 2026-08-22 - Timber financial billing is additive
+
+The verified timber formula remains unchanged. Financial billing is a separate calculation layer using a selectable CFT or M3 rate, invoice-level discount, optional GST percentage, paid amount, balance, and overpayment change. Currency defaults to INR. These are initial product assumptions and may be revised without changing timber measurement totals.
