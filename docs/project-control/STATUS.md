@@ -100,7 +100,7 @@ Batch 0 through Batch 6 functional work is complete. Both flagships are function
 
 ## In progress
 
-- Batch 7 invention and implementation planning for Labs 25 and 27-30. Existing placeholder names must be replaced before coding because they are generic adjacent-tool clones.
+- Paused at the user's request after Batch 7 planning. Share-Link Afterlife Rehearsal, Proof-to-Interview Compiler, Containment Side-Effect Ledger, Detection Contract Drift Guard, and Assurance Change Shockwave Mapper have replaced the generic placeholders; their differentiators and safety boundaries are locked, but implementation has not started.
 
 ## Next checkpoint
 

@@ -39,11 +39,11 @@
     {"id":22,"slug":"lp-exit-rehearsal","credential":"Decentralized Finance (DeFi): The Future of Finance","project":"LP Exit Rehearsal","category":"business-finance","batch":6,"status":"functional"},
     {"id":23,"slug":"account-recovery-drill","credential":"Introduction to Cybersecurity Essentials","project":"Account Recovery Drill Composer","category":"cybersecurity","batch":6,"status":"functional"},
     {"id":24,"slug":"feature-misuse-contract","credential":"OWASP Top 10 - 2021","project":"Feature Misuse Contract","category":"cybersecurity","batch":6,"status":"functional"},
-    {"id":25,"slug":"privacy-shield","credential":"IT Security: Defense against the digital dark arts","project":"Privacy Shield","category":"cybersecurity","batch":7,"status":"planned"},
+    {"id":25,"slug":"share-link-afterlife","credential":"IT Security: Defense against the digital dark arts","project":"Share-Link Afterlife Rehearsal","category":"cybersecurity","batch":7,"status":"planned"},
     {"id":26,"slug":"network-change-rollback","credential":"The Bits and Bytes of Computer Networking","project":"Network Change Rollback Composer","category":"cloud","batch":4,"status":"functional"},
-    {"id":27,"slug":"cyber-career-readiness","credential":"Put It to Work: Prepare for Cybersecurity Jobs","project":"Cyber Career Readiness Tracker","category":"cybersecurity","batch":7,"status":"planned"},
-    {"id":28,"slug":"soc-alert-triage","credential":"Introduction to Cybersecurity Tools & Cyberattacks","project":"SOC Alert Triage Simulator","category":"cybersecurity","batch":7,"status":"planned"},
-    {"id":29,"slug":"python-log-anomaly-scanner","credential":"Automate Cybersecurity Tasks with Python","project":"Python Log Anomaly Scanner","category":"cybersecurity","batch":7,"status":"planned"},
-    {"id":30,"slug":"security-risk-register","credential":"Play It Safe: Manage Security Risks","project":"Security Risk Register","category":"cybersecurity","batch":7,"status":"planned"}
+    {"id":27,"slug":"proof-to-interview-compiler","credential":"Put It to Work: Prepare for Cybersecurity Jobs","project":"Proof-to-Interview Compiler","category":"cybersecurity","batch":7,"status":"planned"},
+    {"id":28,"slug":"containment-side-effect-ledger","credential":"Introduction to Cybersecurity Tools & Cyberattacks","project":"Containment Side-Effect Ledger","category":"cybersecurity","batch":7,"status":"planned"},
+    {"id":29,"slug":"detection-contract-drift-guard","credential":"Automate Cybersecurity Tasks with Python","project":"Detection Contract Drift Guard","category":"cybersecurity","batch":7,"status":"planned"},
+    {"id":30,"slug":"assurance-change-shockwave","credential":"Play It Safe: Manage Security Risks","project":"Assurance Change Shockwave Mapper","category":"cybersecurity","batch":7,"status":"planned"}
   ]
 }
