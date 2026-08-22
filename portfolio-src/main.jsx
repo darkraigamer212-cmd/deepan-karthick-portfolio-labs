@@ -108,39 +108,51 @@ function Hero() {
   return (
     <section className="hero page-frame" aria-labelledby="hero-title">
       <div className="hero-copy">
+        <p className="hero-role">Software engineer / systems builder</p>
         <h1 id="hero-title">I build practical software for real business decisions.</h1>
         <p className="hero-lead">B.Sc. Computer Science with AI student building tested React tools, operational workflows, and local-first software for internships and startup projects.</p>
         <p className="availability"><span aria-hidden="true" />Available for software internships and startup projects</p>
         <div className="hero-actions">
-          <a className="text-link" href="#work">Review flagship work <Arrow /></a>
-          <a className="text-link" href={links.labs}>Explore 30 Applied Labs <Arrow /></a>
+          <a className="glass-action glass-action-primary" href="#work">Review flagship work <Arrow /></a>
+          <a className="glass-action" href={links.labs}>Explore 30 Applied Labs <Arrow /></a>
         </div>
       </div>
-      <SystemDiagram />
+      <div className="hero-flagships" aria-label="Flagship software systems">
+        <FlagshipPreview
+          eyebrow="Production · orders · stock"
+          title="Lakshmipriya ERP"
+          summary="Operational workflows, inventory, invoicing, and reporting in one verifiable system."
+          screenshot={flagships[0].screenshot}
+          alt={flagships[0].alt}
+          href={links.erp}
+          tone="cyan"
+        />
+        <FlagshipPreview
+          eyebrow="Measure · price · invoice"
+          title="Timber CFT Pro"
+          summary="Accurate timber measurement, business pricing, billing, and local customer history."
+          screenshot={flagships[1].screenshot}
+          alt={flagships[1].alt}
+          href={links.timber}
+          tone="magenta"
+        />
+      </div>
     </section>
   );
 }
 
-function SystemDiagram() {
+function FlagshipPreview({ eyebrow, title, summary, screenshot, alt, href, tone }) {
   return (
-    <div className="system-diagram" aria-label="Two flagship systems turn business data into operational decisions">
-      <div className="diagram-notes" aria-hidden="true">
-        <span>Systems I design<br />solve these problems</span>
-        <span>Data in<br />decisions out</span>
+    <a className={`flagship-preview flagship-preview-${tone}`} href={href}>
+      <div className="preview-copy">
+        <span className="preview-index" aria-hidden="true">{tone === "cyan" ? "01" : "02"}</span>
+        <p>{eyebrow}</p>
+        <h2>{title}</h2>
+        <span className="preview-summary">{summary}</span>
+        <span className="preview-link">Open live system <Arrow /></span>
       </div>
-      <div className="diagram-track" aria-hidden="true"><i /><i /><i /></div>
-      <a className="system-node system-node-forest" href={links.erp}>
-        <ProjectIcon type="press" />
-        <strong>Printing Press ERP</strong>
-        <span>Production · orders · stock</span>
-      </a>
-      <a className="system-node system-node-orange" href={links.timber}>
-        <ProjectIcon type="timber" />
-        <strong>Timber CFT Pro + Billing</strong>
-        <span>Measure · price · invoice</span>
-      </a>
-      <p className="diagram-caption">Engineered for clarity. Built for impact.</p>
-    </div>
+      <figure><img src={screenshot} alt={alt} /></figure>
+    </a>
   );
 }
 
