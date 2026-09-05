@@ -34,6 +34,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
     BaseDocTemplate,
     Frame,
+    KeepTogether,
     ListFlowable,
     ListItem,
     NextPageTemplate,
@@ -55,13 +56,13 @@ PDF_PATH = OUTPUT_DIR / "portfolio_labs_complete_manual.pdf"
 
 # Branded compact-reference palette.  The role names stay stable across DOCX
 # and PDF even though their rendering APIs differ.
-BONE = "F7F1E7"
-BONE_DARK = "E8DED0"
-INK = "202925"
-FOREST = "245744"
-FOREST_DARK = "173B30"
-ORANGE = "D96C32"
-MUTED = "716B62"
+BONE = "FFFFFF"
+BONE_DARK = "F2F5F8"
+INK = "171717"
+FOREST = "223E56"
+FOREST_DARK = "000000"
+ORANGE = "000000"
+MUTED = "4A4A4A"
 WHITE = "FFFFFF"
 
 INLINE_RE = re.compile(
@@ -70,6 +71,13 @@ INLINE_RE = re.compile(
 HEADING_RE = re.compile(r"^(#{1,3})\s+(.+?)\s*$")
 LIST_RE = re.compile(r"^(\s*)([-+*]|\d+\.)\s+(.+?)\s*$")
 TABLE_RULE_RE = re.compile(r"^:?-{3,}:?$")
+
+
+def _heading_text(text: str) -> str:
+    """Use plain, punctuation-free publication headings without changing IDs."""
+    text = text.replace("&", " and ").replace("+", " and ")
+    text = re.sub(r"[\u2010-\u2015/-]", " ", text)
+    return " ".join(re.sub(r"[^\w\s]", "", text).split())
 
 
 @dataclass(slots=True)
@@ -112,6 +120,7 @@ def _starts_block(lines: Sequence[str], index: int) -> bool:
 def parse_markdown(text: str) -> list[Block]:
     """Parse the manual's deliberately bounded Markdown subset."""
 
+    text = re.sub(r"[\u2010-\u2015]", "-", text)
     lines = text.replace("\r\n", "\n").replace("\r", "\n").split("\n")
     blocks: list[Block] = []
     index = 0
@@ -183,7 +192,11 @@ def parse_markdown(text: str) -> list[Block]:
         while index < len(lines) and not _starts_block(lines, index):
             paragraph_lines.append(lines[index].strip())
             index += 1
-        blocks.append(Block("paragraph", text=" ".join(paragraph_lines)))
+        paragraph_text = " ".join(paragraph_lines)
+        if re.fullmatch(r"\*\*[^*]{1,140}\*\*", paragraph_text):
+            blocks.append(Block("heading", text=paragraph_text[2:-2], level=4))
+        else:
+            blocks.append(Block("paragraph", text=paragraph_text))
 
     return blocks
 
@@ -283,6 +296,15 @@ def _set_table_geometry(table, widths_dxa: Sequence[int]) -> None:
         tbl_pr.append(layout)
     layout.set(qn("w:type"), "fixed")
 
+    borders = OxmlElement("w:tblBorders")
+    for side in ("top", "left", "bottom", "right", "insideH", "insideV"):
+        border = OxmlElement(f"w:{side}")
+        border.set(qn("w:val"), "single")
+        border.set(qn("w:sz"), "4")
+        border.set(qn("w:color"), "D9D9D9")
+        borders.append(border)
+    tbl_pr.append(borders)
+
     grid = table._tbl.tblGrid
     for child in list(grid):
         grid.remove(child)
@@ -311,6 +333,8 @@ def _table_widths(headers: Sequence[str]) -> list[int]:
         return [1500, 2200, 2200, 3460]
     if len(headers) == 3:
         return [1800, 3000, 4560]
+    if len(headers) == 2:
+        return [2600, 6760]
     count = max(1, len(headers))
     widths = [9360 // count] * count
     widths[-1] += 9360 - sum(widths)
@@ -421,7 +445,7 @@ def _configure_docx_styles(document: Document) -> None:
     title.font.bold = True
     title.font.color.rgb = _hex_rgb(FOREST_DARK)
     title.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    title.paragraph_format.space_before = Pt(126)
+    title.paragraph_format.space_before = Pt(12)
     title.paragraph_format.space_after = Pt(24)
     title.paragraph_format.keep_with_next = True
 
@@ -429,12 +453,12 @@ def _configure_docx_styles(document: Document) -> None:
     heading_1.font.name = "Calibri"
     heading_1.font.size = Pt(16)
     heading_1.font.bold = True
-    heading_1.font.color.rgb = _hex_rgb(FOREST)
+    heading_1.font.color.rgb = _hex_rgb("000000")
     heading_1.paragraph_format.space_before = Pt(18)
     heading_1.paragraph_format.space_after = Pt(10)
     heading_1.paragraph_format.line_spacing = 1.05
     heading_1.paragraph_format.keep_with_next = True
-    heading_1.paragraph_format.page_break_before = True
+    heading_1.paragraph_format.page_break_before = False
 
     heading_2 = styles["Heading 2"]
     heading_2.font.name = "Calibri"
@@ -469,9 +493,9 @@ def _configure_docx_styles(document: Document) -> None:
     cover_meta.font.name = "Calibri"
     cover_meta.font.size = Pt(10.5)
     cover_meta.font.color.rgb = _hex_rgb(MUTED)
-    cover_meta.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    cover_meta.paragraph_format.left_indent = Inches(0.45)
-    cover_meta.paragraph_format.right_indent = Inches(0.45)
+    cover_meta.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    cover_meta.paragraph_format.left_indent = Inches(0)
+    cover_meta.paragraph_format.right_indent = Inches(0)
     cover_meta.paragraph_format.space_after = Pt(7)
     cover_meta.paragraph_format.line_spacing = 1.18
 
@@ -622,7 +646,7 @@ def _configure_docx_page(document: Document) -> None:
     run = paragraph.add_run("PORTFOLIO + APPLIED LABS  /  COMPLETE PROJECT MANUAL")
     _set_run_font(run, "Calibri", 8)
     run.bold = True
-    run.font.color.rgb = _hex_rgb(FOREST)
+    run.font.color.rgb = _hex_rgb("000000")
 
     footer = section.footer
     paragraph = footer.paragraphs[0]
@@ -653,15 +677,12 @@ def _add_docx_code(document: Document, text: str) -> None:
     lines = text.split("\n") or [""]
     for index, line in enumerate(lines):
         paragraph = document.add_paragraph(style="Code Block")
-        _set_paragraph_shading(paragraph, BONE_DARK)
         run = paragraph.add_run(line if line else " ")
         _set_run_font(run, "Consolas", 8.5)
         if index == 0:
             paragraph.paragraph_format.space_before = Pt(5)
-            _set_paragraph_border(paragraph, "top", ORANGE, size=6, space=4)
         if index == len(lines) - 1:
             paragraph.paragraph_format.space_after = Pt(7)
-            _set_paragraph_border(paragraph, "bottom", ORANGE, size=6, space=4)
 
 
 def _add_docx_linear_table(document: Document, block: Block) -> None:
@@ -697,6 +718,8 @@ def _add_docx_appendix_table(document: Document, block: Block) -> None:
             _set_cell_shading(cell, FOREST if row_index == 0 else (BONE_DARK if row_index % 2 else BONE))
             paragraph = cell.paragraphs[0]
             paragraph.style = document.styles["Appendix Table Text"]
+            if column_index == 0 and block.headers[0].strip() in {"#", "Batch", "ID"}:
+                paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
             if row_index == 0:
                 run = paragraph.add_run(value)
                 _set_run_font(run, "Calibri", 8)
@@ -710,13 +733,12 @@ def build_docx(blocks: Sequence[Block], output_path: Path) -> None:
     document = Document()
     _configure_docx_page(document)
     _configure_docx_styles(document)
-    document.core_properties.title = "Portfolio and Applied Labs - Complete Project Manual"
+    document.core_properties.title = "Portfolio and Applied Labs Complete Project Manual"
     document.core_properties.subject = "Two flagships and thirty certificate-linked applied labs"
     document.core_properties.author = "Deepan Karthick"
     document.core_properties.keywords = "portfolio, applied labs, Timber CFT, printing ERP"
 
     bullet_num_id = _create_numbering(document, ordered=False)
-    decimal_num_id = _create_numbering(document, ordered=True)
     on_cover = True
     appendix_context = False
 
@@ -724,18 +746,19 @@ def build_docx(blocks: Sequence[Block], output_path: Path) -> None:
         if block.kind == "heading":
             if block.level == 1:
                 paragraph = document.add_paragraph(style="Title")
-                _set_paragraph_shading(paragraph, BONE)
-                _set_paragraph_border(paragraph, "top", ORANGE, size=18, space=12)
-                _add_inline_docx(paragraph, block.text, base_font="Georgia", base_size=30)
+                _add_inline_docx(paragraph, _heading_text(block.text), base_font="Georgia", base_size=30)
             elif block.level == 2:
                 on_cover = False
                 appendix_context = False
                 paragraph = document.add_paragraph(style="Heading 1")
-                _add_inline_docx(paragraph, block.text, base_size=16)
-            else:
+                _add_inline_docx(paragraph, _heading_text(block.text), base_size=16)
+            elif block.level == 3:
                 appendix_context = block.text.startswith("Appendix ")
                 paragraph = document.add_paragraph(style="Heading 2")
-                _add_inline_docx(paragraph, block.text, base_size=13)
+                _add_inline_docx(paragraph, _heading_text(block.text), base_size=13)
+            else:
+                paragraph = document.add_paragraph(style="Heading 3")
+                _add_inline_docx(paragraph, _heading_text(block.text), base_size=12)
             continue
 
         if block.kind == "paragraph":
@@ -746,13 +769,11 @@ def build_docx(blocks: Sequence[Block], output_path: Path) -> None:
 
         if block.kind == "quote":
             paragraph = document.add_paragraph(style="Editorial Quote")
-            _set_paragraph_shading(paragraph, BONE_DARK)
-            _set_paragraph_border(paragraph, "left", ORANGE, size=18, space=8)
             _add_inline_docx(paragraph, block.text, base_font="Georgia", base_size=11)
             continue
 
         if block.kind == "list":
-            num_id = decimal_num_id if block.ordered else bullet_num_id
+            num_id = _create_numbering(document, ordered=True) if block.ordered else bullet_num_id
             style = "List Number" if block.ordered else "List Bullet"
             for level, item in block.items:
                 paragraph = document.add_paragraph(style=style)
@@ -765,10 +786,8 @@ def build_docx(blocks: Sequence[Block], output_path: Path) -> None:
             continue
 
         if block.kind == "table":
-            if appendix_context:
-                _add_docx_appendix_table(document, block)
-            else:
-                _add_docx_linear_table(document, block)
+            _add_docx_appendix_table(document, block)
+            document.add_paragraph().paragraph_format.space_after = Pt(3)
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     document.save(output_path)
@@ -880,16 +899,14 @@ def _pdf_styles(fonts: dict[str, str]) -> dict[str, ParagraphStyle]:
             fontSize=10.2,
             leading=13.2,
             textColor=HexColor(f"#{MUTED}"),
-            alignment=TA_CENTER,
-            leftIndent=0.42 * inch,
-            rightIndent=0.42 * inch,
+            alignment=TA_LEFT,
             spaceAfter=8,
         ),
         "Body": ParagraphStyle(
             "Body",
             fontName=fonts["sans"],
-            fontSize=10,
-            leading=12.8,
+            fontSize=11,
+            leading=14,
             textColor=HexColor(f"#{INK}"),
             alignment=TA_LEFT,
             spaceAfter=6,
@@ -901,8 +918,8 @@ def _pdf_styles(fonts: dict[str, str]) -> dict[str, ParagraphStyle]:
             fontName=fonts["bold"],
             fontSize=16,
             leading=19,
-            textColor=HexColor(f"#{FOREST}"),
-            spaceBefore=0,
+            textColor=colors.black,
+            spaceBefore=15,
             spaceAfter=10,
             keepWithNext=True,
         ),
@@ -925,18 +942,18 @@ def _pdf_styles(fonts: dict[str, str]) -> dict[str, ParagraphStyle]:
             textColor=HexColor(f"#{FOREST_DARK}"),
             leftIndent=18,
             rightIndent=10,
-            borderColor=HexColor(f"#{ORANGE}"),
-            borderWidth=1.5,
-            borderPadding=9,
-            backColor=HexColor(f"#{BONE_DARK}"),
             spaceBefore=7,
             spaceAfter=10,
+        ),
+        "Detail": ParagraphStyle(
+            "Detail", fontName=fonts["bold"], fontSize=11, leading=13.5,
+            textColor=colors.black, spaceBefore=9, spaceAfter=6, keepWithNext=True,
         ),
         "List": ParagraphStyle(
             "List",
             fontName=fonts["sans"],
-            fontSize=9.8,
-            leading=12.25,
+            fontSize=10.5,
+            leading=13.3,
             textColor=HexColor(f"#{INK}"),
             spaceAfter=3,
         ),
@@ -948,10 +965,6 @@ def _pdf_styles(fonts: dict[str, str]) -> dict[str, ParagraphStyle]:
             textColor=HexColor(f"#{FOREST_DARK}"),
             leftIndent=10,
             rightIndent=10,
-            borderColor=HexColor(f"#{ORANGE}"),
-            borderWidth=0.7,
-            borderPadding=7,
-            backColor=HexColor(f"#{BONE_DARK}"),
             spaceBefore=4,
             spaceAfter=7,
         ),
@@ -979,16 +992,16 @@ def _pdf_styles(fonts: dict[str, str]) -> dict[str, ParagraphStyle]:
         "TableHeader": ParagraphStyle(
             "TableHeader",
             fontName=fonts["bold"],
-            fontSize=7.3,
-            leading=8.7,
+            fontSize=8.3,
+            leading=10,
             textColor=colors.white,
             alignment=TA_LEFT,
         ),
         "TableCell": ParagraphStyle(
             "TableCell",
             fontName=fonts["sans"],
-            fontSize=7.1,
-            leading=8.6,
+            fontSize=8.1,
+            leading=10,
             textColor=HexColor(f"#{INK}"),
             alignment=TA_LEFT,
         ),
@@ -1012,10 +1025,6 @@ def _draw_cover_page(canvas, document) -> None:
     width, height = LETTER
     canvas.setFillColor(HexColor(f"#{BONE}"))
     canvas.rect(0, 0, width, height, stroke=0, fill=1)
-    canvas.setFillColor(HexColor(f"#{FOREST_DARK}"))
-    canvas.rect(0, height - 0.24 * inch, width, 0.24 * inch, stroke=0, fill=1)
-    canvas.setFillColor(HexColor(f"#{ORANGE}"))
-    canvas.rect(0, 0, width, 0.13 * inch, stroke=0, fill=1)
     canvas.restoreState()
 
 
@@ -1028,7 +1037,7 @@ def _draw_body_page(canvas, document) -> None:
     canvas.setLineWidth(0.6)
     canvas.line(inch, height - 0.62 * inch, width - inch, height - 0.62 * inch)
     canvas.setFont(document.fonts["bold"], 7.6)
-    canvas.setFillColor(HexColor(f"#{FOREST}"))
+    canvas.setFillColor(colors.black)
     canvas.drawString(inch, height - 0.50 * inch, "PORTFOLIO + APPLIED LABS")
     canvas.setFont(document.fonts["sans"], 7.6)
     canvas.setFillColor(HexColor(f"#{MUTED}"))
@@ -1056,7 +1065,7 @@ def _pdf_appendix_table(block: Block, styles: dict[str, ParagraphStyle], fonts: 
                 ("BACKGROUND", (0, 0), (-1, 0), HexColor(f"#{FOREST}")),
                 ("BACKGROUND", (0, 1), (-1, -1), HexColor(f"#{BONE}")),
                 ("ROWBACKGROUNDS", (0, 1), (-1, -1), [HexColor(f"#{BONE}"), HexColor(f"#{BONE_DARK}")]),
-                ("GRID", (0, 0), (-1, -1), 0.35, HexColor(f"#{BONE_DARK}")),
+                ("GRID", (0, 0), (-1, -1), 0.4, HexColor("#D9D9D9")),
                 ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
                 ("LEFTPADDING", (0, 0), (-1, -1), 4),
                 ("RIGHTPADDING", (0, 0), (-1, -1), 4),
@@ -1078,7 +1087,7 @@ def build_pdf(blocks: Sequence[Block], output_path: Path) -> None:
         rightMargin=inch,
         topMargin=inch,
         bottomMargin=inch,
-        title="Portfolio and Applied Labs - Complete Project Manual",
+        title="Portfolio and Applied Labs Complete Project Manual",
         author="Deepan Karthick",
         subject="Two flagships and thirty certificate-linked applied labs",
         allowSplitting=1,
@@ -1099,17 +1108,19 @@ def build_pdf(blocks: Sequence[Block], output_path: Path) -> None:
     for block in blocks:
         if block.kind == "heading":
             if block.level == 1:
-                story.append(Spacer(1, 1.65 * inch))
-                story.append(Paragraph(_inline_pdf(block.text, fonts), styles["CoverTitle"]))
+                story.append(Spacer(1, 0.12 * inch))
+                story.append(Paragraph(_inline_pdf(_heading_text(block.text), fonts), styles["CoverTitle"]))
             elif block.level == 2:
                 if on_cover:
                     story.extend((NextPageTemplate("Body"), PageBreak()))
                     on_cover = False
                 appendix_context = False
-                story.append(Paragraph(_inline_pdf(block.text, fonts), styles["Section"]))
-            else:
+                story.append(Paragraph(_inline_pdf(_heading_text(block.text), fonts), styles["Section"]))
+            elif block.level == 3:
                 appendix_context = block.text.startswith("Appendix ")
-                story.append(Paragraph(_inline_pdf(block.text, fonts), styles["Subsection"]))
+                story.append(Paragraph(_inline_pdf(_heading_text(block.text), fonts), styles["Subsection"]))
+            else:
+                story.append(Paragraph(_inline_pdf(_heading_text(block.text), fonts), styles["Detail"]))
             continue
 
         if block.kind == "paragraph":
@@ -1136,7 +1147,20 @@ def build_pdf(blocks: Sequence[Block], output_path: Path) -> None:
             }
             if block.ordered:
                 list_options["start"] = "1"
-            story.append(ListFlowable(items, **list_options))
+            if (
+                items and story and isinstance(story[-1], Paragraph)
+                and story[-1].style.name in {"Section", "Subsection", "Detail"}
+            ):
+                heading = story.pop()
+                first_options = {**list_options, "spaceAfter": 0}
+                story.append(KeepTogether([heading, ListFlowable(items[:1], **first_options)]))
+                if len(items) > 1:
+                    remaining_options = dict(list_options)
+                    if block.ordered:
+                        remaining_options["start"] = "2"
+                    story.append(ListFlowable(items[1:], **remaining_options))
+            else:
+                story.append(ListFlowable(items, **list_options))
             continue
 
         if block.kind == "code":

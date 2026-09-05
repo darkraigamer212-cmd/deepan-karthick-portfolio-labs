@@ -2,7 +2,7 @@
 
 Updated: 2026-09-04
 
-Phase: **Portfolio-only redesign implemented locally; final QA, manual generation, deployment, and push pending**
+Phase: **Portfolio-only redesign built, verified, deployed to Cloudflare, and ready to push to GitHub**
 
 ## Authoritative resume state — 2026-09-04
 
@@ -11,13 +11,19 @@ This section overrides older progress wording retained below for history.
 - Latest user scope: redesign the **portfolio only**. Do not redesign Timber CFT, Printing Press ERP, or the Applied Labs application.
 - Timber source changes from the cancelled redesign lane were restored byte-for-byte to `HEAD`. No ERP source changes were made.
 - The Applied Labs redesign agent was stopped and its assigned `labs-src/main.jsx` and `labs-src/styles.css` changes were restored to `HEAD`. The earlier one-line Lab 06 stale-result crash fix remains intentional.
-- Portfolio homepage and links page now implement the selected aurora/glass + search/workspace + coral-accent visual target.
-- Shared predictive project search is implemented and its 18 focused tests pass.
-- Portfolio production build passes: 430 modules transformed.
+- Portfolio homepage and links page now implement the selected aurora/glass, bento, clay, neon, parallax, hover, morphing, liquid-background, and motion-control visual target.
+- Shared predictive project search is implemented and covered by focused tests.
+- Full automated suite passes: 169 tests, 0 failures.
+- Full production build passes: portfolio 430 modules, Applied Labs 90 modules, Timber demo 32 modules.
+- Site assembly passes and writes 145 public files to `site-dist/`.
 - Browser evidence at 1440px: correct two flagships, all three real images load, no empty links, no horizontal overflow, and no console warnings/errors.
 - Browser evidence at 390x844: responsive navigation, hero, search, counts, and single-column project layout have no page overflow.
-- Manual Markdown contains detailed source-backed chapters for Labs 01–30; the documentation lane recorded 142 focused passing tests. Flagship expansion may be partial because the save request interrupted that lane.
-- Generated manual PDF/DOCX are still stale. Full build/site assembly, final design QA, Cloudflare deployment, and GitHub push are still pending.
+- Manual Markdown contains detailed source-backed chapters for both flagships and Labs 01–30.
+- Generated manual PDF/DOCX were regenerated from the current Markdown on 2026-09-05. The PDF has 65 pages and rendered page thumbnails were reviewed for obvious layout defects.
+- Final design QA is recorded in root `design-qa.md` with `final result: passed`.
+- Cloudflare deployment passed on 2026-09-05: `https://deepan-karthick-portfolio.industrious-keyboard.workers.dev`, version `b80bdec7-b3f0-4a60-ad32-ecbe0808f5a8`.
+- Public smoke tests returned 200 for `/`, `/links.html`, `/labs/`, `/timber-demo/`, and `/docs/generated/portfolio_labs_complete_manual.pdf`.
+- Timber, ERP, and Applied Labs visual source are intentionally unchanged in this pass. Only the earlier one-line Lab 06 stale-result fix remains outside the portfolio source.
 - Local preview used `http://127.0.0.1:4173/`; rebuild and reload it before final acceptance.
 
 ### Resume order
